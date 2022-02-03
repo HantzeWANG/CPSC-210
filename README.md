@@ -9,7 +9,7 @@ The MovieFinder is designed to help users:
 
 
 The project is designed for people who *love movies and shows* but have trouble to decide which one to watch next.
-This project is interesting for me because I enjoyed watching movies and shows a lot, that would be  so fantastic if I
+This project is interesting for me because I enjoyed watching movies and shows a lot in my spare time, that would be  so fantastic if I
 could have my own project to *record* and *find* different movies and shows.
 
 ## User stories
