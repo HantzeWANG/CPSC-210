@@ -15,6 +15,8 @@ public class Goods {
 
     // EFFECTS: constructs a goods with given String name
     // and no quantity in stock, with other values as 0
+    // quantity in stock is the number of goods currently in stock
+    // average cost is the average cost of goods in stock
     public Goods(String name) {
         this.name = name;
         this.quantityInStock = 0;

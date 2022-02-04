@@ -45,8 +45,6 @@ public class Warehouse {
                 totalCostInWarehouse -=
                         (amount * this.goodsInWarehouseMenu.get(i).getAverageCost());
                 this.goodsInWarehouseMenu.get(i).sell(amount,price);
-
-
             }
         }
 
@@ -64,7 +62,7 @@ public class Warehouse {
     }
 
     // getters
-    public ArrayList<Goods> getGoodsInStock() {
+    public ArrayList<Goods> getGoodsInWarehouseMenu() {
         return goodsInWarehouseMenu;
     }
 }

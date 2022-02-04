@@ -17,7 +17,7 @@ public class WarehouseTest {
     void testConstructor() {
         assertEquals("w1", testWarehouse.getName());
         assertEquals(0, testWarehouse.getTotalCostInWarehouse());
-        assertTrue(testWarehouse.getGoodsInStock().isEmpty());
+        assertTrue(testWarehouse.getGoodsInWarehouseMenu().isEmpty());
     }
 
     @Test
@@ -25,14 +25,14 @@ public class WarehouseTest {
         testWarehouse.purchaseGoods("AirPods Pro", 10, 200);
         assertEquals("w1", testWarehouse.getName());
         assertEquals(2000, testWarehouse.getTotalCostInWarehouse());
-        assertEquals(1, testWarehouse.getGoodsInStock().size());
-        assertEquals("AirPods Pro", testWarehouse.getGoodsInStock().get(0).getName());
+        assertEquals(1, testWarehouse.getGoodsInWarehouseMenu().size());
+        assertEquals("AirPods Pro", testWarehouse.getGoodsInWarehouseMenu().get(0).getName());
 
         testWarehouse.purchaseGoods("iPhone 13", 2, 1500);
         assertEquals("w1", testWarehouse.getName());
         assertEquals(5000, testWarehouse.getTotalCostInWarehouse());
-        assertEquals(2, testWarehouse.getGoodsInStock().size());
-        assertEquals("iPhone 13", testWarehouse.getGoodsInStock().get(1).getName());
+        assertEquals(2, testWarehouse.getGoodsInWarehouseMenu().size());
+        assertEquals("iPhone 13", testWarehouse.getGoodsInWarehouseMenu().get(1).getName());
     }
 
     @Test
@@ -43,15 +43,15 @@ public class WarehouseTest {
         testWarehouse.sellGoods("AirPods Pro", 10, 300);
         assertEquals("w1", testWarehouse.getName());
         assertEquals(3000, testWarehouse.getTotalCostInWarehouse());
-        assertEquals(2, testWarehouse.getGoodsInStock().size());
-        assertEquals("AirPods Pro", testWarehouse.getGoodsInStock().get(0).getName());
+        assertEquals(2, testWarehouse.getGoodsInWarehouseMenu().size());
+        assertEquals("AirPods Pro", testWarehouse.getGoodsInWarehouseMenu().get(0).getName());
 
         testWarehouse.sellGoods("iPhone 13", 2, 5000);
         assertEquals("w1", testWarehouse.getName());
         assertEquals(0, testWarehouse.getTotalCostInWarehouse());
-        assertEquals(2, testWarehouse.getGoodsInStock().size());
-        assertEquals("AirPods Pro", testWarehouse.getGoodsInStock().get(0).getName());
-        assertEquals("iPhone 13", testWarehouse.getGoodsInStock().get(1).getName());
+        assertEquals(2, testWarehouse.getGoodsInWarehouseMenu().size());
+        assertEquals("AirPods Pro", testWarehouse.getGoodsInWarehouseMenu().get(0).getName());
+        assertEquals("iPhone 13", testWarehouse.getGoodsInWarehouseMenu().get(1).getName());
 
     }
 }

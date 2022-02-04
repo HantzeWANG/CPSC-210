@@ -1,5 +1,6 @@
 package model;
 
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -24,13 +25,13 @@ class UserTest {
 
     @Test
     void testAddWarehouse() {
-        testUser.addWarehouse("Warehouse1");
+        testUser.addWarehouse("w1");
         assertEquals(1, testUser.getWareHouses().size());
-        assertEquals("Warehouse1", testUser.getWareHouses().get(0));
-        System.out.println(testUser.getWareHouses());
+        assertEquals("w1", testUser.getWareHouses().get(0).getName());
 
-        testUser.addWarehouse("Warehouse2");
+        testUser.addWarehouse("w2");
         assertEquals(2, testUser.getWareHouses().size());
-        assertEquals("Warehouse2", testUser.getWareHouses().get(1));
+        assertEquals("w2", testUser.getWareHouses().get(1).getName());
+
     }
 }

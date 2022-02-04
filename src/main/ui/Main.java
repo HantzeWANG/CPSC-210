@@ -17,8 +17,7 @@ public class Main {
 
         Warehouse w1 = new Warehouse("warehouse");
         User user1 = new User("Hanze","xxx","asd");
-        user1.addWarehouse("w1");
-        System.out.println(user1.getWareHouses().get(0));
+
     }
 }
 

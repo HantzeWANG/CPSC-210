@@ -19,7 +19,7 @@ public class User {
     }
 
     // MODIFIES: this
-    // EFFECTS: add a warehouse to a user's warehouses list
+    // EFFECTS: add a new warehouse with the given name to a user's warehouses list
     public void addWarehouse(String wareHouseName) {
         Warehouse warehouse = new Warehouse(wareHouseName);
         this.warehouses.add(warehouse);
@@ -42,7 +42,7 @@ public class User {
     }
 
     // getter
-    public ArrayList getWareHouses() {
-        return this.warehouses;
+    public ArrayList<Warehouse> getWareHouses() {
+        return warehouses;
     }
 }
