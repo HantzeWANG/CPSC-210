@@ -1,24 +1,21 @@
-# Important Days
+# MovieFinder
 
 ## Project introduction
 
-The project is designed to help users:
-- set **important days** in the future as reminder
-- view details of that day's **arrangement**
-- jog your precious memory and review the past important days
-
-The project is designed for people who want to make *days matter*.
-This project is so interesting for me because I enjoyed marking all important
-days. I can see which important event is coming and how many days left. 
+The MovieFinder is designed to help users:
+- find interesting movies to watch and add them into your own **watchlist**
+- view details of each movie or show and give your **personal rating**
+- record the movies and shows you have watched and jog your precious memory
 
 
+The project is designed for people who *love movies and shows* but have trouble to decide which one to watch next.
+This project is interesting for me because I enjoyed watching movies and shows a lot in my spare time, that would be  so fantastic if I
+could have my own project to *record* and *find* different movies and shows.
 
 ## User stories
 
-- As a user, I want to see all important days in my list and view details
-- As a user, I want to add new days to my list
-- As a user, I want to delete days from my list
-- As a user, I want to flag a day to show high priority
-- As a user, I want to check the days left for new events
-- As a user, I want to check the days past for new events
-
+- As a user, I want to see all movies in my database and view a movie in detail
+- As a user, I want to add an interesting movie to my watchlist
+- As a user, I want to mark a movie as watched and give my rating
+- As a user, I want to check my watchlist and browse my watched movies
+- As a user, I want to add new movies with details to my database

@@ -2,20 +2,22 @@ package model;
 
 // Represents a movie having a title, a release time,
 // an average rating, a user's rating, and a brief intro
-public class Events {
+public class Movie {
     private String title;
     private int releaseTime;
+    private double publicRating;
     private String intro;
     private int userRating;
 
     // EFFECTS: constructs a movie with title,
     // release time, public rating, intro, and no user
     // rating
-    public Events(String title, int releaseTime,
-                  double publicRating, String intro,
-                  int userRating) {
+    public Movie(String title, int releaseTime,
+                 double publicRating, String intro,
+                 int userRating) {
         this.title = title;
         this.releaseTime = releaseTime;
+        this.publicRating = publicRating;
         this.intro = intro;
         this.userRating = userRating;
     }
@@ -26,29 +28,8 @@ public class Events {
     public void rateTheMovie(int rating) {
         this.userRating = rating;
 
-    }
 
-    // getters
-    public String getTitle() {
-        return title;
-    }
 
-    public int getReleaseTime() {
-        return releaseTime;
-    }
-
-    public String getIntro() {
-        return intro;
-    }
-
-    public int getUserRating() {
-        return userRating;
-    }
-
-    // EFFECTS: returns a String representation of movie
-    public String toString() {
-        return "title: " + getTitle() + "," + "release time: " + getReleaseTime()
-                + "intro: " + getIntro();
     }
 
 
