@@ -1,21 +1,22 @@
-# MovieFinder
+# Inventory management system
 
 ## Project introduction
 
-The MovieFinder is designed to help users:
-- find interesting movies to watch and add them into your own **watchlist**
-- view details of each movie or show and give your **personal rating**
-- record the movies and shows you have watched and jog your precious memory
+The system is designed to help users:
+- manage their inventory more efficiently
+- view varies features including **cost**, **stock**, **transactions**
 
 
-The project is designed for people who *love movies and shows* but have trouble to decide which one to watch next.
-This project is interesting for me because I enjoyed watching movies and shows a lot in my spare time, that would be  so fantastic if I
-could have my own project to *record* and *find* different movies and shows.
+The project is designed for small enterprises to *manage their inventory* more efficiently.
+Using an individual account, everyone's information can be *safe* and *private*.
+This project is interesting for me because I can use it to manage some of my important belongs
+in daily life. Later on, I can make it to different versions including *stock portfolio tracker*.
 
 ## User stories
 
-- As a user, I want to see all movies in my database and view a movie in detail
-- As a user, I want to add an interesting movie to my watchlist
-- As a user, I want to mark a movie as watched and give my rating
-- As a user, I want to check my watchlist and browse my watched movies
-- As a user, I want to add new movies with details to my database
+- As a user, I want to view each good's quantity in stock
+- As a user, I want to purchase a kind of good
+- As a user, I want to sell a kind of good
+- As a user, I want to check my average cost of a specific kind of good
+- As a user, I want to create new kind of goods
+- As a user, I want to view my transaction records
