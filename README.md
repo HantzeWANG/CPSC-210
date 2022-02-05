@@ -8,15 +8,15 @@ The system is designed to help users:
 
 
 The project is designed for small enterprises to *manage their inventory* more efficiently.
-Using an individual account, everyone's information can be *safe* and *private*.
-This project is interesting for me because I can use it to manage some of my important belongs
+User can view the transaction records and record every sell or purchase.
+This project is interesting for me because I can use it to manage some of my important belongings
 in daily life. Later on, I can make it to different versions including *stock portfolio tracker*.
 
 ## User stories
 
-- As a user, I want to view each good's quantity in stock
-- As a user, I want to purchase a kind of good
-- As a user, I want to sell a kind of good
-- As a user, I want to check my average cost of a specific kind of good
-- As a user, I want to create new kind of goods
-- As a user, I want to view my transaction records
+
+- As a user, I want to purchase a kind of goods and add it to goods menu
+- As a user, I want to sell a kind of goods
+- As a user, I want to create a record for each purchase or sell and add it in transactions
+- As a user, I want to check detailed information of a goods on the menu
+- As a user, I want to view my transaction records in a warehouse

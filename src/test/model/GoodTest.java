@@ -130,19 +130,31 @@ class GoodTest {
 
     @Test
     void testStatusToString() {
-        assertEquals("Name of goods: MacBook Pro, Quantity in stock: 0, Average cost: 0.0, " +
-                "Total cost of goods in stock: 0.0, historicalTotalCost: 0.0, " +
-                "historicalTotalRevenue: 0.0, historicalTotalProfit: 0.0, " +
-                "historicalAverageCost: 0.0, historicalAverageRevenue: 0.0, " +
-                "historicalTotalPurchaseAmount: 0, historicalTotalSellAmount: 0", testGoods.statusToString());
+        assertEquals("Name of goods: MacBook Pro,\n" +
+                " Quantity in stock: 0,\n" +
+                " Average cost: 0.0,\n" +
+                " Total cost of goods in stock: 0.0,\n" +
+                " historicalTotalCost: 0.0,\n" +
+                " historicalTotalRevenue: 0.0,\n" +
+                " historicalTotalProfit: 0.0,\n" +
+                " historicalAverageCost: 0.0,\n" +
+                " historicalAverageRevenue: 0.0,\n" +
+                " historicalTotalPurchaseAmount: 0,\n" +
+                " historicalTotalSellAmount: 0", testGoods.statusToString());
 
         testGoods.purchase(5,10);
 
-        assertEquals("Name of goods: MacBook Pro, Quantity in stock: 5, Average cost: 10.0, " +
-                "Total cost of goods in stock: 50.0, historicalTotalCost: 50.0, " +
-                "historicalTotalRevenue: 0.0, historicalTotalProfit: 0.0, " +
-                "historicalAverageCost: 10.0, historicalAverageRevenue: 0.0, " +
-                "historicalTotalPurchaseAmount: 5, historicalTotalSellAmount: 0", testGoods.statusToString());
+        assertEquals("Name of goods: MacBook Pro,\n" +
+                " Quantity in stock: 5,\n" +
+                " Average cost: 10.0,\n" +
+                " Total cost of goods in stock: 50.0,\n" +
+                " historicalTotalCost: 50.0,\n" +
+                " historicalTotalRevenue: 0.0,\n" +
+                " historicalTotalProfit: 0.0,\n" +
+                " historicalAverageCost: 10.0,\n" +
+                " historicalAverageRevenue: 0.0,\n" +
+                " historicalTotalPurchaseAmount: 5,\n" +
+                " historicalTotalSellAmount: 0", testGoods.statusToString());
     }
 
 

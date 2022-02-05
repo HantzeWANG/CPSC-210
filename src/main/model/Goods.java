@@ -1,17 +1,18 @@
 package model;
 
+
 public class Goods {
     private String name;
     private int quantityInStock;
-    private double averageCost;
-    private double totalCostInStock;
-    private double historicalTotalCost;
-    private double historicalTotalRevenue;
-    private double historicalTotalProfit;
-    private double historicalAverageCost;
-    private double historicalAverageRevenue;
-    private int historicalTotalPurchaseAmount;
-    private int historicalTotalSellAmount;
+    private double averageCost;    //average cost for purchasing goods in stock
+    private double totalCostInStock; // total cost for goods in stock
+    private double historicalTotalCost; // money spent on purchasing goods historically
+    private double historicalTotalRevenue; // revenue on goods historically
+    private double historicalTotalProfit; // profit made on goods historically
+    private double historicalAverageCost; // average cost for goods historically
+    private double historicalAverageRevenue; //average revenue for goods historically
+    private int historicalTotalPurchaseAmount; // total purchased amount historically
+    private int historicalTotalSellAmount; // total sold amount historically
 
     // EFFECTS: constructs a goods with given String name
     // and no quantity in stock, with other values as 0
@@ -70,16 +71,16 @@ public class Goods {
     // EFFECTS: give a brief report of many statistics figure of goods
     public String statusToString() {
         return "Name of goods: " + this.getName()
-                + ", Quantity in stock: " + this.getQuantityInStock()
-                + ", Average cost: " + this.getAverageCost()
-                + ", Total cost of goods in stock: " + this.getTotalCostInStock()
-                + ", historicalTotalCost: " + this.historicalTotalCost
-                + ", historicalTotalRevenue: " + this.historicalTotalRevenue
-                + ", historicalTotalProfit: " + this.historicalTotalProfit
-                + ", historicalAverageCost: " + this.historicalAverageCost
-                + ", historicalAverageRevenue: " + this.historicalAverageRevenue
-                + ", historicalTotalPurchaseAmount: " + this.historicalTotalPurchaseAmount
-                + ", historicalTotalSellAmount: " + this.historicalTotalSellAmount;
+                + ",\n Quantity in stock: " + this.getQuantityInStock()
+                + ",\n Average cost: " + this.getAverageCost()
+                + ",\n Total cost of goods in stock: " + this.getTotalCostInStock()
+                + ",\n historicalTotalCost: " + this.historicalTotalCost
+                + ",\n historicalTotalRevenue: " + this.historicalTotalRevenue
+                + ",\n historicalTotalProfit: " + this.historicalTotalProfit
+                + ",\n historicalAverageCost: " + this.historicalAverageCost
+                + ",\n historicalAverageRevenue: " + this.historicalAverageRevenue
+                + ",\n historicalTotalPurchaseAmount: " + this.historicalTotalPurchaseAmount
+                + ",\n historicalTotalSellAmount: " + this.historicalTotalSellAmount;
     }
 
 

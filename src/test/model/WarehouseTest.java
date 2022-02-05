@@ -18,6 +18,7 @@ public class WarehouseTest {
         assertEquals("w1", testWarehouse.getName());
         assertEquals(0, testWarehouse.getTotalCostInWarehouse());
         assertTrue(testWarehouse.getGoodsInWarehouseMenu().isEmpty());
+        assertTrue(testWarehouse.getTransactionRecords().isEmpty());
     }
 
     @Test
@@ -27,12 +28,18 @@ public class WarehouseTest {
         assertEquals(2000, testWarehouse.getTotalCostInWarehouse());
         assertEquals(1, testWarehouse.getGoodsInWarehouseMenu().size());
         assertEquals("AirPods Pro", testWarehouse.getGoodsInWarehouseMenu().get(0).getName());
+        assertEquals(1, testWarehouse.getTransactionRecords().size());
+        assertEquals("2022-02-04: Purchased 10 AirPods Pro at cost of 200.0"
+                ,testWarehouse.getTransactionRecords().get(0));
 
         testWarehouse.purchaseGoods("iPhone 13", 2, 1500);
         assertEquals("w1", testWarehouse.getName());
         assertEquals(5000, testWarehouse.getTotalCostInWarehouse());
         assertEquals(2, testWarehouse.getGoodsInWarehouseMenu().size());
         assertEquals("iPhone 13", testWarehouse.getGoodsInWarehouseMenu().get(1).getName());
+        assertEquals(2, testWarehouse.getTransactionRecords().size());
+        assertEquals("2022-02-04: Purchased 2 iPhone 13 at cost of 1500.0"
+                ,testWarehouse.getTransactionRecords().get(1));
     }
 
     @Test
@@ -45,6 +52,9 @@ public class WarehouseTest {
         assertEquals(3000, testWarehouse.getTotalCostInWarehouse());
         assertEquals(2, testWarehouse.getGoodsInWarehouseMenu().size());
         assertEquals("AirPods Pro", testWarehouse.getGoodsInWarehouseMenu().get(0).getName());
+        assertEquals(3, testWarehouse.getTransactionRecords().size());
+        assertEquals("2022-02-04: Sold 10 AirPods Pro at price of 300.0"
+                ,testWarehouse.getTransactionRecords().get(2));
 
         testWarehouse.sellGoods("iPhone 13", 2, 5000);
         assertEquals("w1", testWarehouse.getName());
@@ -52,6 +62,11 @@ public class WarehouseTest {
         assertEquals(2, testWarehouse.getGoodsInWarehouseMenu().size());
         assertEquals("AirPods Pro", testWarehouse.getGoodsInWarehouseMenu().get(0).getName());
         assertEquals("iPhone 13", testWarehouse.getGoodsInWarehouseMenu().get(1).getName());
+        assertEquals(4, testWarehouse.getTransactionRecords().size());
+        assertEquals("2022-02-04: Sold 2 iPhone 13 at price of 5000.0"
+                ,testWarehouse.getTransactionRecords().get(3));
 
     }
+
+
 }

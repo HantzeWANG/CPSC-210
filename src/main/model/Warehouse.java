@@ -1,11 +1,13 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Warehouse {
     private String name;
     private double totalCostInWarehouse;
     private ArrayList<Goods> goodsInWarehouseMenu;
+    private ArrayList<String> transactionRecords;
 
     // EFFECTS : constructs a warehouse with given name,
     //           set total value in stock as 0,
@@ -14,6 +16,7 @@ public class Warehouse {
         this.name = name;
         this.totalCostInWarehouse = 0;
         this.goodsInWarehouseMenu = new ArrayList<>();
+        this.transactionRecords = new ArrayList<>();
     }
 
     // REQUIRES: amount and cost should be non-negative
@@ -32,10 +35,14 @@ public class Warehouse {
             this.goodsInWarehouseMenu.add(good);
             totalCostInWarehouse += (amount * cost);
         }
+        LocalDate date = LocalDate.now();
+        String s = date + ": Purchased " + amount + " " + nameOfGoods + " at cost of " + cost;
+        transactionRecords.add(s);
     }
 
     // REQUIRES: amount and price should be non-negative
     //           amount <= the stock number of this goods in warehouse
+    //           the goods should be in the menu
     // MODIFIES: this
     // EFFECTS: use sell methods to do selling, and reduce the total
     //          costs of goods in warehouse correspondingly
@@ -47,6 +54,9 @@ public class Warehouse {
                 this.goodsInWarehouseMenu.get(i).sell(amount,price);
             }
         }
+        LocalDate date = LocalDate.now();
+        String s = date + ": Sold " + amount + " " + nameOfGoods + " at price of " + price;
+        transactionRecords.add(s);
 
 
     }
@@ -64,5 +74,10 @@ public class Warehouse {
     // getters
     public ArrayList<Goods> getGoodsInWarehouseMenu() {
         return goodsInWarehouseMenu;
+    }
+
+    // getters
+    public ArrayList<String> getTransactionRecords() {
+        return transactionRecords;
     }
 }

@@ -6,7 +6,7 @@ public class User {
     private String name;
     private String email;
     private String password;
-    private ArrayList<Warehouse> warehouses;
+
 
     // EFFECTS: constructs a user with username,
     //          email address and password, his/her list of warehouses
@@ -15,15 +15,9 @@ public class User {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.warehouses = new ArrayList<>();
     }
 
-    // MODIFIES: this
-    // EFFECTS: add a new warehouse with the given name to a user's warehouses list
-    public void addWarehouse(String wareHouseName) {
-        Warehouse warehouse = new Warehouse(wareHouseName);
-        this.warehouses.add(warehouse);
-    }
+
 
 
     // getter
@@ -41,8 +35,4 @@ public class User {
         return password;
     }
 
-    // getter
-    public ArrayList<Warehouse> getWareHouses() {
-        return warehouses;
-    }
 }
