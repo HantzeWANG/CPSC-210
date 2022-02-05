@@ -88,7 +88,7 @@ public class WarehouseApp {
 
         if (amount >= 0.0 && cost >= 0) {
             warehouse.purchaseGoods(goodsName,amount,cost);
-            System.out.println("The goods has been added successfully!");
+            System.out.println("\nThe goods has been added successfully!");
         } else {
             System.out.println("please do not give negative number...\n");
         }
@@ -117,20 +117,30 @@ public class WarehouseApp {
                 System.out.print("Enter selling price of each goods : ");
                 double price = input.nextDouble();
                 warehouse.sellGoods(goodsName, amount, price);
-                System.out.println("The goods have left warehouse successfully!\n");
+                System.out.println("\nThe goods have left warehouse successfully!");
             }
         }
     }
 
     // EFFECTS: view transaction records in the warehouse
     private void doViewTransactionRecords() {
-        System.out.println(warehouse.getTransactionRecords());
+        for (int i = 0; i < warehouse.getTransactionRecords().size(); i++) {
+            System.out.println(warehouse.getTransactionRecords().get(i));
+        }
+        System.out.println(warehouse.getTransactionRecords().size() + " records in total");
     }
 
-    // EFFECTS: view goods menu in the warehouse
+    // EFFECTS: view goods menu in the warehouse,
+    //          then view goods detail
     private void doViewGoods() {
-        System.out.println(warehouse.getGoodsInWarehouseMenu());
-        System.out.println("Total cost of goods in warehouse currently: " + warehouse.getTotalCostInWarehouse());
+        for (int i = 0; i < this.warehouse.getGoodsInWarehouseMenu().size(); i++) {
+            System.out.println(i + 1 + ": " + this.warehouse.getGoodsInWarehouseMenu().get(i).getName());
+        }
+
+        System.out.println("\nTotal cost of goods in warehouse currently: " + warehouse.getTotalCostInWarehouse());
+        System.out.println("Enter the correspondent number to view goods details: ");
+        int index = input.nextInt();
+        System.out.println(warehouse.getGoodsInWarehouseMenu().get(index - 1).statusToString());
     }
 
 }
