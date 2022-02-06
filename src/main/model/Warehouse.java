@@ -27,6 +27,12 @@ public class Warehouse {
     // total costs of goods in warehouse
     public void purchaseGoods(String nameOfGoods, int amount, double cost) {
         Goods good = new Goods(nameOfGoods);
+        for (int i = 0; i < this.goodsInWarehouseMenu.size(); i++) {
+            Goods goods = this.goodsInWarehouseMenu.get(i);
+            if (nameOfGoods.equals(goods.getName())) {
+                good = goods;
+            }
+        }
         if (goodsInWarehouseMenu.contains(good)) {
             good.purchase(amount, cost);
             totalCostInWarehouse += (amount * cost);

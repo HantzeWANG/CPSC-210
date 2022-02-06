@@ -87,11 +87,11 @@ public class WarehouseApp {
         System.out.print("Enter cost of each goods: ");
         double cost = input.nextDouble();
 
-        if (amount >= 0.0 && cost >= 0) {
+        if (amount > 0.0 && cost >= 0) {
             warehouse.purchaseGoods(goodsName,amount,cost);
             System.out.println("\nThe goods have been added successfully!");
         } else {
-            System.out.println("please do not give negative number...\n");
+            System.out.println("Your input is invalid...\n");
         }
     }
 

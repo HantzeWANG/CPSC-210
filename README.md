@@ -4,7 +4,8 @@
 
 The system is designed to help users:
 - manage their inventory more efficiently
-- view varies features including **cost**, **stock**, **transactions**
+- record each transaction in different warehouses
+- view varies features including **cost**, **stock**, **transactions**, etc.
 
 
 The project is designed for small enterprises to *manage their inventory* more efficiently.
