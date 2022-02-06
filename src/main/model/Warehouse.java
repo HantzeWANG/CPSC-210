@@ -57,8 +57,12 @@ public class Warehouse {
         LocalDate date = LocalDate.now();
         String s = date + ": Sold " + amount + " " + nameOfGoods + " at price of " + price;
         transactionRecords.add(s);
+    }
 
-
+    // MODIFIES: this
+    // EFFECTS: modify warehouse name
+    public void editWarehouseName(String newName) {
+        this.name = newName;
     }
 
     // getters

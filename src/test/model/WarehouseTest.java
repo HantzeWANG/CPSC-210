@@ -65,7 +65,12 @@ public class WarehouseTest {
         assertEquals(4, testWarehouse.getTransactionRecords().size());
         assertEquals("2022-02-04: Sold 2 iPhone 13 at price of 5000.0"
                 ,testWarehouse.getTransactionRecords().get(3));
+    }
 
+    @Test
+    void testEditWarehouseName() {
+        testWarehouse.editWarehouseName("newName");
+        assertEquals("newName", testWarehouse.getName());
     }
 
 

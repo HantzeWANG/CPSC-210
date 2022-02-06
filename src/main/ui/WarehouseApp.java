@@ -51,33 +51,34 @@ public class WarehouseApp {
             doViewTransactionRecords();
         } else if (command.equals("g")) {
             doViewGoods();
+        } else if (command.equals("n")) {
+            getWarehouse();
         }
     }
 
     // MODIFIES: this
-    // EFFECTS: initializes user
+    // EFFECTS: initializes warehouse
     private void init() {
-        //System.out.println("Enter username: ");
-        //String username = input.next();
-        // ADD email and password
-        //this.user = new User(username,"email000","pw000");
-        this.warehouse = new Warehouse("wareHouseName000");
         input = new Scanner(System.in);
         input.useDelimiter("\n");
+        createUser();
+        getWarehouse();
     }
 
     // EFFECTS: displays menu of options to user
     private void displayMenu() {
-        System.out.println("\nSelect from:");
+        System.out.println("\t\nViewing: " + this.warehouse.getName());
+        System.out.println("Select from:");
         System.out.println("\tp -> purchase");
         System.out.println("\ts -> sell");
         System.out.println("\tt -> view transaction records");
         System.out.println("\tg -> view goods menu in warehouse");
+        System.out.println("\tn -> change warehouse or create a new one");
         System.out.println("\tq -> quit");
     }
 
     // MODIFIES: this
-    // EFFECTS: purchase the goods at given cost of given quantity
+    // EFFECTS: purchase the goods at given cost for given quantity
     private void doPurchase() {
         System.out.print("Enter name of goods purchased: ");
         String goodsName = input.next();
@@ -94,8 +95,10 @@ public class WarehouseApp {
         }
     }
 
+
+
     // MODIFIES: this
-    // EFFECTS: sell the goods with given name at given price of given quantity
+    // EFFECTS: sell the goods with given name at given price for given quantity
     private void doSell() {
         Goods goods1 = null;
         System.out.print("Enter name of goods for sell: ");
@@ -127,14 +130,14 @@ public class WarehouseApp {
         for (int i = 0; i < warehouse.getTransactionRecords().size(); i++) {
             System.out.println(warehouse.getTransactionRecords().get(i));
         }
-        System.out.println(warehouse.getTransactionRecords().size() + " records in total");
+        System.out.println(warehouse.getTransactionRecords().size() + " records found");
     }
 
     // EFFECTS: view goods menu in the warehouse,
     //          then view goods detail
     private void doViewGoods() {
         for (int i = 0; i < this.warehouse.getGoodsInWarehouseMenu().size(); i++) {
-            System.out.println(i + 1 + ": " + this.warehouse.getGoodsInWarehouseMenu().get(i).getName());
+            System.out.println(i + 1 + " -> " + this.warehouse.getGoodsInWarehouseMenu().get(i).getName());
         }
 
         System.out.println("\nTotal cost of goods in warehouse currently: " + warehouse.getTotalCostInWarehouse());
@@ -143,6 +146,36 @@ public class WarehouseApp {
         System.out.println(warehouse.getGoodsInWarehouseMenu().get(index - 1).statusToString());
     }
 
+    //EFFECTS : create a user with given email and password
+    private void createUser() {
+        System.out.print("Enter username: ");
+        String username = input.next();
+        System.out.print("Enter email: ");
+        String email = input.next();
+        System.out.print("Enter password: ");
+        String pw = input.next();
+        this.user = new User(username, email, pw);
+        System.out.println("Welcome! " + username);
+    }
+
+
+    // EFFECTS: get the warehouse user want to use
+    private void getWarehouse() {
+        System.out.println("\nPlease select warehouse: ");
+        for (int i = 0; i < this.user.getWareHouses().size(); i++) {
+            System.out.println(i + 1 + " -> " + this.user.getWareHouses().get(i).getName());
+        }
+        System.out.println("0 -> create a new warehouse");
+        int index = input.nextInt();
+        if (index == 0) {
+            System.out.println("Enter name of new warehouse: ");
+            String newName = input.next();
+            this.warehouse = new Warehouse(newName);
+            this.user.getWareHouses().add(warehouse);
+        } else {
+            this.warehouse = this.user.getWareHouses().get(index - 1);
+        }
+    }
 }
 
 

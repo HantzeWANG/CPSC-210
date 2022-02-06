@@ -19,6 +19,19 @@ class UserTest {
         assertEquals("Hanze WANG", testUser.getName());
         assertEquals("hanzewang123@outlook.com", testUser.getEmail());
         assertEquals("mypassword", testUser.getPassword());
+        assertTrue(testUser.getWareHouses().isEmpty());
+    }
+
+    @Test
+    void testAddWarehouse() {
+        testUser.addWarehouse("Warehouse1");
+        assertEquals(1, testUser.getWareHouses().size());
+        assertEquals("Warehouse1", testUser.getWareHouses().get(0).getName());
+
+
+        testUser.addWarehouse("Warehouse2");
+        assertEquals(2, testUser.getWareHouses().size());
+        assertEquals("Warehouse2", testUser.getWareHouses().get(1).getName());
     }
 
 }
