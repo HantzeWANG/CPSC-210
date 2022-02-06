@@ -69,12 +69,12 @@ public class WarehouseApp {
     private void displayMenu() {
         System.out.println("\t\nViewing: " + this.warehouse.getName());
         System.out.println("Select from:");
-        System.out.println("\tp -> purchase");
-        System.out.println("\ts -> sell");
-        System.out.println("\tt -> view transaction records");
-        System.out.println("\tg -> view goods menu in warehouse");
-        System.out.println("\tn -> change warehouse or create a new one");
-        System.out.println("\tq -> quit");
+        System.out.println("\tenter p for -> purchase");
+        System.out.println("\tenter s for -> sell");
+        System.out.println("\tenter t for -> view transaction records");
+        System.out.println("\tenter g for -> view goods menu in warehouse");
+        System.out.println("\tenter n for -> change warehouse or create a new one");
+        System.out.println("\tenter q for -> quit");
     }
 
     // MODIFIES: this
@@ -84,12 +84,12 @@ public class WarehouseApp {
         String goodsName = input.next();
         System.out.print("Enter number of goods purchased: ");
         int amount = input.nextInt();
-        System.out.print("Enter cost of each goods : ");
+        System.out.print("Enter cost of each goods: ");
         double cost = input.nextDouble();
 
         if (amount >= 0.0 && cost >= 0) {
             warehouse.purchaseGoods(goodsName,amount,cost);
-            System.out.println("\nThe goods has been added successfully!");
+            System.out.println("\nThe goods have been added successfully!");
         } else {
             System.out.println("please do not give negative number...\n");
         }
@@ -100,30 +100,30 @@ public class WarehouseApp {
     // MODIFIES: this
     // EFFECTS: sell the goods with given name at given price for given quantity
     private void doSell() {
-        Goods goods1 = null;
-        System.out.print("Enter name of goods for sell: ");
-        String goodsName = input.next();
-        for (int i = 0; i < warehouse.getGoodsInWarehouseMenu().size(); i++) {
-            if (warehouse.getGoodsInWarehouseMenu().get(i).getName().equals(goodsName)) {
-                goods1 = warehouse.getGoodsInWarehouseMenu().get(i);
-                break;
-            }
-        }
-        if (goods1 == null) {
-            System.out.println("There is no such goods in warehouse...");
+        if (warehouse.getGoodsInWarehouseMenu().isEmpty()) {
+            System.out.println("There is no goods on menu");
         } else {
-            System.out.print("Enter number of goods for sell: ");
+            System.out.println("enter: ");
+            for (int i = 0; i < warehouse.getGoodsInWarehouseMenu().size(); i++) {
+                System.out.println(i + 1 + " for " + warehouse.getGoodsInWarehouseMenu().get(i).getName());
+            }
+            int index = input.nextInt() - 1;
+            Goods goodsForSell = warehouse.getGoodsInWarehouseMenu().get(index);
+            System.out.println("Inventory: " + goodsForSell.getQuantityInStock());
+            System.out.println("Average cost: " + goodsForSell.getAverageCost());
+            System.out.println("Enter amount to sell: ");
             int amount = input.nextInt();
-            if (goods1.getQuantityInStock() < amount) {
-                System.out.println("there is not enough stock, only " + goods1.getQuantityInStock() + " left...");
+            if (goodsForSell.getQuantityInStock() < amount) {
+                System.out.println("there is not enough stock, only " + goodsForSell.getQuantityInStock() + " left...");
             } else {
                 System.out.print("Enter selling price of each goods : ");
                 double price = input.nextDouble();
-                warehouse.sellGoods(goodsName, amount, price);
+                warehouse.sellGoods(goodsForSell.getName(), amount, price);
                 System.out.println("\nThe goods have left warehouse successfully!");
             }
         }
     }
+
 
     // EFFECTS: view transaction records in the warehouse
     private void doViewTransactionRecords() {
@@ -163,9 +163,9 @@ public class WarehouseApp {
     private void getWarehouse() {
         System.out.println("\nPlease select warehouse: ");
         for (int i = 0; i < this.user.getWareHouses().size(); i++) {
-            System.out.println(i + 1 + " -> " + this.user.getWareHouses().get(i).getName());
+            System.out.println("enter " + i + 1 + " for -> " + this.user.getWareHouses().get(i).getName());
         }
-        System.out.println("0 -> create a new warehouse");
+        System.out.println("enter 0 to create a new warehouse");
         int index = input.nextInt();
         if (index == 0) {
             System.out.println("Enter name of new warehouse: ");
