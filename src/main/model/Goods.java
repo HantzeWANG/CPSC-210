@@ -15,9 +15,7 @@ public class Goods {
     private int historicalTotalSellAmount; // total sold amount historically
 
     // EFFECTS: constructs a goods with given String name
-    // and no quantity in stock, with other values as 0
-    // quantity in stock is the number of goods currently in stock
-    // average cost is the average cost of goods in stock
+    // and 0 in stock, with other values as 0
     public Goods(String name) {
         this.name = name;
         this.quantityInStock = 0;
@@ -52,7 +50,6 @@ public class Goods {
     // MODIFIES: this
     // EFFECTS: decrease amount of goods from the stock, and
     //          update other statistic values
-
     public void sell(int amount, double price) {
         this.quantityInStock = this.quantityInStock - amount;
         this.totalCostInStock = this.totalCostInStock - this.getAverageCost() * amount;
@@ -68,7 +65,7 @@ public class Goods {
                 this.historicalTotalRevenue - this.historicalTotalCost + this.totalCostInStock;
     }
 
-    // EFFECTS: give a brief report of many statistics figure of goods
+    // EFFECTS: give a brief report of statistics figure about goods
     public String statusToString() {
         return "Name of goods: " + this.getName()
                 + ",\n Quantity in stock: " + this.getQuantityInStock()

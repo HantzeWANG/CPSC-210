@@ -11,7 +11,7 @@ public class User {
 
     // EFFECTS: constructs a user with username,
     //          email address and password, his/her list of warehouses
-    //          is initially set to be 0
+    //          is initially set to be empty
     public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
@@ -25,7 +25,6 @@ public class User {
         Warehouse warehouse = new Warehouse(wareHouseName);
         this.warehouses.add(warehouse);
     }
-
 
     // getter
     public String getName() {

@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 public class Warehouse {
     private String name;
-    private double totalCostInWarehouse;
-    private ArrayList<Goods> goodsInWarehouseMenu;
-    private ArrayList<String> transactionRecords;
+    private double totalCostInWarehouse; // total costs of goods currently in warehouse
+    private ArrayList<Goods> goodsInWarehouseMenu; // the list of goods that has been added to warehouse
+    private ArrayList<String> transactionRecords; // records of purchase and sells
 
     // EFFECTS : constructs a warehouse with given name,
     //           set total value in stock as 0,
@@ -20,11 +20,10 @@ public class Warehouse {
     }
 
     // REQUIRES: amount and cost should be non-negative
-    // MODIFIES: this, goods(nameOfGoods)
-    // EFFECTS: if the goods has already been created,
-    // use purchase methods to do purchase, if not, create
-    // a new goods and add it into list of goods menu, then add the value
-    // total costs of goods in warehouse
+    // MODIFIES: this
+    // EFFECTS: if the goods has already been created, use purchase methods
+    //          to do purchase, if not, create a new goods and do purchase
+    //          add it into the list of goods menu
     public void purchaseGoods(String nameOfGoods, int amount, double cost) {
         Goods good = new Goods(nameOfGoods);
         for (int i = 0; i < this.goodsInWarehouseMenu.size(); i++) {
@@ -46,9 +45,9 @@ public class Warehouse {
         transactionRecords.add(s);
     }
 
-    // REQUIRES: amount and price should be non-negative
+    // REQUIRES: amount > 0, price >= 0
     //           amount <= the stock number of this goods in warehouse
-    //           the goods should be in the menu
+    //           the goods with given name should exist in the menu
     // MODIFIES: this
     // EFFECTS: use sell methods to do selling, and reduce the total
     //          costs of goods in warehouse correspondingly

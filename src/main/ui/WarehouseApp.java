@@ -67,13 +67,14 @@ public class WarehouseApp {
 
     // EFFECTS: displays menu of options to user
     private void displayMenu() {
-        System.out.println("\t\nViewing: " + this.warehouse.getName());
-        System.out.println("Select from:");
+        System.out.println("\t\nUser: " + this.user.getName());
+        System.out.println("----Warehouse: " + this.warehouse.getName());
+        System.out.println("\nSelect from:");
         System.out.println("\tenter p for -> purchase");
         System.out.println("\tenter s for -> sell");
         System.out.println("\tenter t for -> view transaction records");
         System.out.println("\tenter g for -> view goods menu in warehouse");
-        System.out.println("\tenter n for -> change warehouse or create a new one");
+        System.out.println("\tenter n for -> switch warehouse or create a new one");
         System.out.println("\tenter q for -> quit");
     }
 
@@ -136,14 +137,19 @@ public class WarehouseApp {
     // EFFECTS: view goods menu in the warehouse,
     //          then view goods detail
     private void doViewGoods() {
-        for (int i = 0; i < this.warehouse.getGoodsInWarehouseMenu().size(); i++) {
-            System.out.println(i + 1 + " -> " + this.warehouse.getGoodsInWarehouseMenu().get(i).getName());
-        }
+        if (this.warehouse.getGoodsInWarehouseMenu().isEmpty()) {
+            System.out.println("There is no goods on menu");
+        } else {
+            System.out.println("\tSelect from:");
+            for (int i = 0; i < this.warehouse.getGoodsInWarehouseMenu().size(); i++) {
+                System.out.println(i + 1 + " -> " + this.warehouse.getGoodsInWarehouseMenu().get(i).getName());
+            }
 
-        System.out.println("\nTotal cost of goods in warehouse currently: " + warehouse.getTotalCostInWarehouse());
-        System.out.println("Enter the correspondent number to view goods details: ");
-        int index = input.nextInt();
-        System.out.println(warehouse.getGoodsInWarehouseMenu().get(index - 1).statusToString());
+            System.out.println("\nTotal cost of goods in warehouse currently: " + warehouse.getTotalCostInWarehouse());
+            System.out.println("Enter the correspondent number to view goods details: ");
+            int index = input.nextInt();
+            System.out.println(warehouse.getGoodsInWarehouseMenu().get(index - 1).statusToString());
+        }
     }
 
     //EFFECTS : create a user with given email and password
@@ -162,8 +168,12 @@ public class WarehouseApp {
     // EFFECTS: get the warehouse user want to use
     private void getWarehouse() {
         System.out.println("\nPlease select warehouse: ");
-        for (int i = 0; i < this.user.getWareHouses().size(); i++) {
-            System.out.println("enter " + i + 1 + " for -> " + this.user.getWareHouses().get(i).getName());
+        if (user.getWareHouses().isEmpty()) {
+            System.out.println("Currently you don't have any warehouse");
+        } else {
+            for (int i = 0; i < this.user.getWareHouses().size(); i++) {
+                System.out.println("enter " + (i + 1) + " for -> " + this.user.getWareHouses().get(i).getName());
+            }
         }
         System.out.println("enter 0 to create a new warehouse");
         int index = input.nextInt();
