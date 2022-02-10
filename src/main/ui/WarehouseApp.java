@@ -54,6 +54,8 @@ public class WarehouseApp {
         } else if (command.equals("n")) {
             getWarehouse();
         }
+        System.out.println("--Press any key to continue--");
+        input.next();
     }
 
     // MODIFIES: this
@@ -103,26 +105,26 @@ public class WarehouseApp {
     private void doSell() {
         if (warehouse.getGoodsInWarehouseMenu().isEmpty()) {
             System.out.println("There is no goods on menu");
-        } else {
-            System.out.println("enter: ");
-            for (int i = 0; i < warehouse.getGoodsInWarehouseMenu().size(); i++) {
-                System.out.println(i + 1 + " for " + warehouse.getGoodsInWarehouseMenu().get(i).getName());
-            }
-            int index = input.nextInt() - 1;
-            Goods goodsForSell = warehouse.getGoodsInWarehouseMenu().get(index);
-            System.out.println("Inventory: " + goodsForSell.getQuantityInStock());
-            System.out.println("Average cost: " + goodsForSell.getAverageCost());
-            System.out.println("Enter amount to sell: ");
-            int amount = input.nextInt();
-            if (goodsForSell.getQuantityInStock() < amount) {
-                System.out.println("there is not enough stock, only " + goodsForSell.getQuantityInStock() + " left...");
-            } else {
-                System.out.print("Enter selling price of each goods : ");
-                double price = input.nextDouble();
-                warehouse.sellGoods(goodsForSell.getName(), amount, price);
-                System.out.println("\nThe goods have left warehouse successfully!");
-            }
+            return;
         }
+        System.out.println("enter: ");
+        for (int i = 0; i < warehouse.getGoodsInWarehouseMenu().size(); i++) {
+            System.out.println(i + 1 + " for " + warehouse.getGoodsInWarehouseMenu().get(i).getName());
+        }
+        int index = input.nextInt() - 1;
+        Goods goodsForSell = warehouse.getGoodsInWarehouseMenu().get(index);
+        System.out.println("Inventory: " + goodsForSell.getQuantityInStock());
+        System.out.println("Average cost: " + goodsForSell.getAverageCost());
+        System.out.println("Enter amount to sell: ");
+        int amount = input.nextInt();
+        if (goodsForSell.getQuantityInStock() < amount) {
+            System.out.println("there is not enough stock, only " + goodsForSell.getQuantityInStock() + " left...");
+            return;
+        }
+        System.out.print("Enter selling price of each goods : ");
+        double price = input.nextDouble();
+        warehouse.sellGoods(goodsForSell.getName(), amount, price);
+        System.out.println("\nThe goods have left warehouse successfully!");
     }
 
 

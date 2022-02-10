@@ -1,8 +1,9 @@
 package model;
 
-
+// represents a kind of goods with given name, quantity in stock
+// and many relative statistical data (see corresponding comments)
 public class Goods {
-    private String name;
+    private final String name;
     private int quantityInStock;
     private double averageCost;    //average cost for purchasing goods in stock
     private double totalCostInStock; // total cost for goods in stock
@@ -51,6 +52,9 @@ public class Goods {
     // EFFECTS: decrease amount of goods from the stock, and
     //          update other statistic values
     public void sell(int amount, double price) {
+//        if (amount > this.quantityInStock) {
+//            throw new Exception("insuff amount")
+//        }
         this.quantityInStock = this.quantityInStock - amount;
         this.totalCostInStock = this.totalCostInStock - this.getAverageCost() * amount;
         if (this.quantityInStock == 0) {
@@ -79,28 +83,6 @@ public class Goods {
                 + ",\n historicalTotalPurchaseAmount: " + this.historicalTotalPurchaseAmount
                 + ",\n historicalTotalSellAmount: " + this.historicalTotalSellAmount;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     // getter

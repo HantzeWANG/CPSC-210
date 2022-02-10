@@ -2,11 +2,13 @@ package model;
 
 import java.util.ArrayList;
 
+// represents a user has a name, an email, a password,
+// and a list of warehouses he/she has created
 public class User {
-    private String name;   // username
-    private String email;
-    private String password;
-    private ArrayList<Warehouse> warehouses; // a user can have different warehouses
+    private final String name;   // username
+    private final String email;
+    private final String password;
+    private final ArrayList<Warehouse> warehouses; // a user can have different warehouses
 
 
     // EFFECTS: constructs a user with username,

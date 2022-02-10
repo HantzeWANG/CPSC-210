@@ -3,11 +3,13 @@ package model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+// Represents a warehouse that has a name, total cost of goods in warehouse
+// list of goods on menu, and list of transaction records.
 public class Warehouse {
     private String name;
     private double totalCostInWarehouse; // total costs of goods currently in warehouse
-    private ArrayList<Goods> goodsInWarehouseMenu; // the list of goods that has been added to warehouse
-    private ArrayList<String> transactionRecords; // records of purchase and sells
+    private final ArrayList<Goods> goodsInWarehouseMenu; // the list of goods that has been added to warehouse
+    private final ArrayList<String> transactionRecords; // records of purchase and sells
 
     // EFFECTS : constructs a warehouse with given name,
     //           set total value in stock as 0,
@@ -56,7 +58,7 @@ public class Warehouse {
             if (this.goodsInWarehouseMenu.get(i).getName().equals(nameOfGoods)) {
                 totalCostInWarehouse -=
                         (amount * this.goodsInWarehouseMenu.get(i).getAverageCost());
-                this.goodsInWarehouseMenu.get(i).sell(amount,price);
+                this.goodsInWarehouseMenu.get(i).sell(amount, price);
             }
         }
         LocalDate date = LocalDate.now();
