@@ -1,5 +1,7 @@
 package model;
 
+import exceptions.InvalidNumberException;
+
 // represents a kind of goods with given name, quantity in stock
 // and many relative statistical data (see corresponding comments)
 public class Goods {
@@ -37,36 +39,43 @@ public class Goods {
     // EFFECTS: add amount to the stock of goods, and
     //          update other statistic values.
 
-    public void purchase(int amount, double cost) {
-        this.quantityInStock = this.quantityInStock + amount;
-        this.totalCostInStock = this.totalCostInStock + cost * amount;
-        this.averageCost = this.totalCostInStock / this.quantityInStock;
+    public void purchase(int amount, double cost) throws InvalidNumberException {
+        if (amount > 0 && cost > 0) {
+            this.quantityInStock = this.quantityInStock + amount;
+            this.totalCostInStock = this.totalCostInStock + cost * amount;
+            this.averageCost = this.totalCostInStock / this.quantityInStock;
 
-        this.historicalTotalCost = this.historicalTotalCost + cost * amount;
-        this.historicalTotalPurchaseAmount = this.historicalTotalPurchaseAmount + amount;
-        this.historicalAverageCost = this.historicalTotalCost / this.historicalTotalPurchaseAmount;
+            this.historicalTotalCost = this.historicalTotalCost + cost * amount;
+            this.historicalTotalPurchaseAmount = this.historicalTotalPurchaseAmount + amount;
+            this.historicalAverageCost = this.historicalTotalCost / this.historicalTotalPurchaseAmount;
+        } else {
+            throw new InvalidNumberException("***The number is invalid***");
+        }
     }
 
     // REQUIRES: amount and cost should be non-negative number
     // MODIFIES: this
     // EFFECTS: decrease amount of goods from the stock, and
     //          update other statistic values
-    public void sell(int amount, double price) {
-//        if (amount > this.quantityInStock) {
-//            throw new Exception("insuff amount")
-//        }
-        this.quantityInStock = this.quantityInStock - amount;
-        this.totalCostInStock = this.totalCostInStock - this.getAverageCost() * amount;
-        if (this.quantityInStock == 0) {
-            this.averageCost = 0;
+    public void sell(int amount, double price) throws InvalidNumberException {
+        if (amount <= 0 || price < 0) {
+            throw new InvalidNumberException("***The number is invalid***");
         }
-
-        this.historicalTotalRevenue = this.historicalTotalRevenue + price * amount;
-        this.historicalTotalSellAmount = this.historicalTotalSellAmount + amount;
-        this.historicalAverageRevenue =
-                this.historicalTotalRevenue / this.historicalTotalSellAmount;
-        this.historicalTotalProfit =
-                this.historicalTotalRevenue - this.historicalTotalCost + this.totalCostInStock;
+        if (amount > this.quantityInStock) {
+            throw new InvalidNumberException("***Insufficient amount***");
+        } else {
+            this.quantityInStock = this.quantityInStock - amount;
+            this.totalCostInStock = this.totalCostInStock - this.getAverageCost() * amount;
+            if (this.quantityInStock == 0) {
+                this.averageCost = 0;
+            }
+            this.historicalTotalRevenue = this.historicalTotalRevenue + price * amount;
+            this.historicalTotalSellAmount = this.historicalTotalSellAmount + amount;
+            this.historicalAverageRevenue =
+                    this.historicalTotalRevenue / this.historicalTotalSellAmount;
+            this.historicalTotalProfit =
+                    this.historicalTotalRevenue - this.historicalTotalCost + this.totalCostInStock;
+        }
     }
 
     // EFFECTS: give a brief report of statistics figure about goods
@@ -84,58 +93,47 @@ public class Goods {
                 + ",\n historicalTotalSellAmount: " + this.historicalTotalSellAmount;
     }
 
-
     // getter
     public String getName() {
         return this.name;
     }
 
-    // getter
     public int getQuantityInStock() {
         return this.quantityInStock;
     }
 
-    // getter
     public double getAverageCost() {
         return this.averageCost;
     }
 
-    // getter
     public double getTotalCostInStock() {
         return this.totalCostInStock;
     }
 
-    // getter
     public double getHistoricalTotalCost() {
         return this.historicalTotalCost;
     }
 
-    // getter
     public double getHistoricalTotalRevenue() {
         return this.historicalTotalRevenue;
     }
 
-    // getter
     public double getHistoricalTotalProfit() {
         return this.historicalTotalProfit;
     }
 
-    // getter
     public int getHistoricalTotalPurchaseAmount() {
         return this.historicalTotalPurchaseAmount;
     }
 
-    // getter
     public int getHistoricalTotalSellAmount() {
         return this.historicalTotalSellAmount;
     }
 
-    // getter
     public double getHistoricalAverageCost() {
         return historicalAverageCost;
     }
 
-    // getter
     public double getHistoricalAverageRevenue() {
         return historicalAverageRevenue;
     }

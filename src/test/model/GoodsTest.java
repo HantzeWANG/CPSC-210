@@ -2,6 +2,7 @@ package model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import exceptions.InvalidNumberException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +32,11 @@ class GoodsTest {
 
     @Test
     void testPurchase() {
-        testGoods.purchase(5,10);
+        try {
+            testGoods.purchase(5,10);
+        } catch (InvalidNumberException e) {
+            fail("there should not be an exception thrown");
+        }
 
         assertEquals("MacBook Pro", testGoods.getName());
         assertEquals(10, testGoods.getAverageCost());
@@ -46,7 +51,11 @@ class GoodsTest {
         assertEquals(5, testGoods.getHistoricalTotalPurchaseAmount());
         assertEquals(0, testGoods.getHistoricalTotalSellAmount());
 
-        testGoods.purchase(5,20);
+        try {
+            testGoods.purchase(5,20);
+        } catch (InvalidNumberException e) {
+            fail("there should not be an exception thrown");
+        }
 
         assertEquals("MacBook Pro", testGoods.getName());
         assertEquals(15, testGoods.getAverageCost());
@@ -60,12 +69,30 @@ class GoodsTest {
         assertEquals(0, testGoods.getHistoricalTotalRevenue());
         assertEquals(10, testGoods.getHistoricalTotalPurchaseAmount());
         assertEquals(0, testGoods.getHistoricalTotalSellAmount());
+
+        try {
+            testGoods.purchase(-10,10);
+            fail("exception did not thrown");
+        } catch (InvalidNumberException e) {
+            //expected
+        }
+
+        try {
+            testGoods.purchase(10,-10);
+            fail("exception did not thrown");
+        } catch (InvalidNumberException e) {
+            //expected
+        }
 
     }
 
     @Test
     void testSell() {
-        testGoods.purchase(5,10);
+        try {
+            testGoods.purchase(5,10);
+        } catch (InvalidNumberException e) {
+            fail();
+        }
 
         assertEquals("MacBook Pro", testGoods.getName());
         assertEquals(10, testGoods.getAverageCost());
@@ -80,7 +107,11 @@ class GoodsTest {
         assertEquals(5, testGoods.getHistoricalTotalPurchaseAmount());
         assertEquals(0, testGoods.getHistoricalTotalSellAmount());
 
-        testGoods.purchase(5,20);
+        try {
+            testGoods.purchase(5,20);
+        } catch (InvalidNumberException e) {
+            fail();
+        }
 
         assertEquals("MacBook Pro", testGoods.getName());
         assertEquals(15, testGoods.getAverageCost());
@@ -95,7 +126,11 @@ class GoodsTest {
         assertEquals(10, testGoods.getHistoricalTotalPurchaseAmount());
         assertEquals(0, testGoods.getHistoricalTotalSellAmount());
 
-        testGoods.sell(5,30);
+        try {
+            testGoods.sell(5,30);
+        } catch (InvalidNumberException e) {
+            fail();
+        }
 
         assertEquals("MacBook Pro", testGoods.getName());
         assertEquals(15, testGoods.getAverageCost());
@@ -110,7 +145,11 @@ class GoodsTest {
         assertEquals(10, testGoods.getHistoricalTotalPurchaseAmount());
         assertEquals(5, testGoods.getHistoricalTotalSellAmount());
 
-        testGoods.sell(5,50);
+        try {
+            testGoods.sell(5,50);
+        } catch (InvalidNumberException e) {
+            fail();
+        }
 
         assertEquals("MacBook Pro", testGoods.getName());
         assertEquals(0, testGoods.getAverageCost());
@@ -125,6 +164,19 @@ class GoodsTest {
         assertEquals(10, testGoods.getHistoricalTotalPurchaseAmount());
         assertEquals(10, testGoods.getHistoricalTotalSellAmount());
 
+        try {
+            testGoods.sell(1,10);
+            fail("no stock");
+        } catch (InvalidNumberException e) {
+            // expected
+        }
+
+        try {
+            testGoods.sell(-10,10);
+            fail("negative amount");
+        } catch (InvalidNumberException e) {
+            // expected
+        }
     }
 
     @Test
@@ -141,7 +193,11 @@ class GoodsTest {
                 " historicalTotalPurchaseAmount: 0,\n" +
                 " historicalTotalSellAmount: 0", testGoods.statusToString());
 
-        testGoods.purchase(5,10);
+        try {
+            testGoods.purchase(5,10);
+        } catch (InvalidNumberException e) {
+            fail();
+        }
 
         assertEquals("Name of goods: MacBook Pro,\n" +
                 " Quantity in stock: 5,\n" +
@@ -155,10 +211,5 @@ class GoodsTest {
                 " historicalTotalPurchaseAmount: 5,\n" +
                 " historicalTotalSellAmount: 0", testGoods.statusToString());
     }
-
-
-
-
-
 
 }

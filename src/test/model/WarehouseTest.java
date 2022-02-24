@@ -2,6 +2,7 @@ package model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import exceptions.InvalidNumberException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +28,11 @@ public class WarehouseTest {
     void testPurchaseGoods() {
         LocalDate date = LocalDate.now();
 
-        testWarehouse.purchaseGoods("AirPods Pro", 10, 200);
+        try {
+            testWarehouse.purchaseGoods("AirPods Pro", 10, 200);
+        } catch (InvalidNumberException e) {
+            fail();
+        }
         assertEquals("w1", testWarehouse.getName());
         assertEquals(2000, testWarehouse.getTotalCostInWarehouse());
         assertEquals(1, testWarehouse.getGoodsInWarehouseMenu().size());
@@ -36,7 +41,11 @@ public class WarehouseTest {
         assertEquals(date + ": Purchased 10 AirPods Pro at cost of 200.0"
                 ,testWarehouse.getTransactionRecords().get(0));
 
-        testWarehouse.purchaseGoods("iPhone 13", 2, 1500);
+        try {
+            testWarehouse.purchaseGoods("iPhone 13", 2, 1500);
+        } catch (InvalidNumberException e) {
+            fail();
+        }
         assertEquals("w1", testWarehouse.getName());
         assertEquals(5000, testWarehouse.getTotalCostInWarehouse());
         assertEquals(2, testWarehouse.getGoodsInWarehouseMenu().size());
@@ -45,7 +54,11 @@ public class WarehouseTest {
         assertEquals(date + ": Purchased 2 iPhone 13 at cost of 1500.0"
                 ,testWarehouse.getTransactionRecords().get(1));
 
-        testWarehouse.purchaseGoods("AirPods Pro", 20, 200);
+        try {
+            testWarehouse.purchaseGoods("AirPods Pro", 20, 200);
+        } catch (InvalidNumberException e) {
+            fail();
+        }
         assertEquals("w1", testWarehouse.getName());
         assertEquals(9000, testWarehouse.getTotalCostInWarehouse());
         assertEquals(2, testWarehouse.getGoodsInWarehouseMenu().size());
@@ -58,10 +71,22 @@ public class WarehouseTest {
     @Test
     void testSellGoods() {
         LocalDate date = LocalDate.now();
-        testWarehouse.purchaseGoods("AirPods Pro", 10, 200);
-        testWarehouse.purchaseGoods("iPhone 13", 2, 1500);
+        try {
+            testWarehouse.purchaseGoods("AirPods Pro", 10, 200);
+        } catch (InvalidNumberException e) {
+            fail();
+        }
+        try {
+            testWarehouse.purchaseGoods("iPhone 13", 2, 1500);
+        } catch (InvalidNumberException e) {
+            fail();
+        }
 
-        testWarehouse.sellGoods("AirPods Pro", 10, 300);
+        try {
+            testWarehouse.sellGoods("AirPods Pro", 10, 300);
+        } catch (InvalidNumberException e) {
+            fail();
+        }
         assertEquals("w1", testWarehouse.getName());
         assertEquals(3000, testWarehouse.getTotalCostInWarehouse());
         assertEquals(2, testWarehouse.getGoodsInWarehouseMenu().size());
@@ -70,7 +95,11 @@ public class WarehouseTest {
         assertEquals(date + ": Sold 10 AirPods Pro at price of 300.0"
                 ,testWarehouse.getTransactionRecords().get(2));
 
-        testWarehouse.sellGoods("iPhone 13", 2, 5000);
+        try {
+            testWarehouse.sellGoods("iPhone 13", 2, 5000);
+        } catch (InvalidNumberException e) {
+            fail();
+        }
         assertEquals("w1", testWarehouse.getName());
         assertEquals(0, testWarehouse.getTotalCostInWarehouse());
         assertEquals(2, testWarehouse.getGoodsInWarehouseMenu().size());
@@ -86,6 +115,5 @@ public class WarehouseTest {
         testWarehouse.editWarehouseName("newName");
         assertEquals("newName", testWarehouse.getName());
     }
-
 
 }

@@ -1,5 +1,6 @@
 package ui;
 
+import exceptions.InvalidNumberException;
 import model.Goods;
 import model.User;
 import model.Warehouse;
@@ -90,14 +91,13 @@ public class WarehouseApp {
         System.out.print("Enter cost of each goods: ");
         double cost = input.nextDouble();
 
-        if (amount > 0.0 && cost >= 0) {
+        try {
             warehouse.purchaseGoods(goodsName,amount,cost);
             System.out.println("\nThe goods have been added successfully!");
-        } else {
-            System.out.println("Your input is invalid...\n");
+        } catch (InvalidNumberException e) {
+            System.out.println(e.getMessage());
         }
     }
-
 
 
     // MODIFIES: this
@@ -117,16 +117,15 @@ public class WarehouseApp {
         System.out.println("Average cost: " + goodsForSell.getAverageCost());
         System.out.println("Enter amount to sell: ");
         int amount = input.nextInt();
-        if (goodsForSell.getQuantityInStock() < amount) {
-            System.out.println("there is not enough stock, only " + goodsForSell.getQuantityInStock() + " left...");
-            return;
-        }
         System.out.print("Enter selling price of each goods : ");
         double price = input.nextDouble();
-        warehouse.sellGoods(goodsForSell.getName(), amount, price);
-        System.out.println("\nThe goods have left warehouse successfully!");
+        try {
+            warehouse.sellGoods(goodsForSell.getName(), amount, price);
+            System.out.println("\nThe goods have left warehouse successfully!");
+        } catch (InvalidNumberException e) {
+            System.out.println(e.getMessage());
+        }
     }
-
 
     // EFFECTS: view transaction records in the warehouse
     private void doViewTransactionRecords() {
@@ -146,7 +145,6 @@ public class WarehouseApp {
             for (int i = 0; i < this.warehouse.getGoodsInWarehouseMenu().size(); i++) {
                 System.out.println(i + 1 + " -> " + this.warehouse.getGoodsInWarehouseMenu().get(i).getName());
             }
-
             System.out.println("\nTotal cost of goods in warehouse currently: " + warehouse.getTotalCostInWarehouse());
             System.out.println("Enter the correspondent number to view goods details: ");
             int index = input.nextInt();

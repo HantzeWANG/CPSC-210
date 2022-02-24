@@ -1,5 +1,7 @@
 package model;
 
+import exceptions.InvalidNumberException;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -26,22 +28,29 @@ public class Warehouse {
     // EFFECTS: if the goods has already been created, use purchase methods
     //          to do purchase, if not, create a new goods and do purchase
     //          add it into the list of goods menu
-    public void purchaseGoods(String nameOfGoods, int amount, double cost) {
+    public void purchaseGoods(String nameOfGoods, int amount, double cost) throws InvalidNumberException {
         Goods good = new Goods(nameOfGoods);
-        for (int i = 0; i < this.goodsInWarehouseMenu.size(); i++) {
-            Goods goods = this.goodsInWarehouseMenu.get(i);
+        for (Goods g : goodsInWarehouseMenu) {
+            Goods goods = g;
             if (nameOfGoods.equals(goods.getName())) {
                 good = goods;
             }
         }
-        if (goodsInWarehouseMenu.contains(good)) {
-            good.purchase(amount, cost);
-            totalCostInWarehouse += (amount * cost);
-        } else {
-            good.purchase(amount, cost);
+
+        good.purchase(amount, cost);
+        if (!goodsInWarehouseMenu.contains(good)) {
             this.goodsInWarehouseMenu.add(good);
-            totalCostInWarehouse += (amount * cost);
         }
+        totalCostInWarehouse += (amount * cost);
+
+//        if (goodsInWarehouseMenu.contains(good)) {
+//            good.purchase(amount, cost);
+//            totalCostInWarehouse += (amount * cost);
+//        } else {
+//            good.purchase(amount, cost);
+//            this.goodsInWarehouseMenu.add(good);
+//            totalCostInWarehouse += (amount * cost);
+//        }
         LocalDate date = LocalDate.now();
         String s = date + ": Purchased " + amount + " " + nameOfGoods + " at cost of " + cost;
         transactionRecords.add(s);
@@ -53,11 +62,12 @@ public class Warehouse {
     // MODIFIES: this
     // EFFECTS: use sell methods to do selling, and reduce the total
     //          costs of goods in warehouse correspondingly
-    public void sellGoods(String nameOfGoods, int amount, double price) {
+    public void sellGoods(String nameOfGoods, int amount, double price) throws InvalidNumberException {
         for (int i = 0; i < this.goodsInWarehouseMenu.size(); i++) {
             if (this.goodsInWarehouseMenu.get(i).getName().equals(nameOfGoods)) {
                 totalCostInWarehouse -=
                         (amount * this.goodsInWarehouseMenu.get(i).getAverageCost());
+
                 this.goodsInWarehouseMenu.get(i).sell(amount, price);
             }
         }
