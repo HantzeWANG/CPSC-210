@@ -4,25 +4,34 @@ import exceptions.InvalidNumberException;
 import model.Goods;
 import model.User;
 import model.Warehouse;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
-
 
 // Inventory management application
 public class WarehouseApp {
+    private static final String JSON_STORE = "./data/test.json";
     private User user;
     private Warehouse warehouse;
     private Scanner input;
+    private final JsonWriter jsonWriter;
+    private final JsonReader jsonReader;
 
 
     // EFFECTS: runs the warehouse application
-    public WarehouseApp() {
+    public WarehouseApp() throws FileNotFoundException {
+        input = new Scanner(System.in);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runApp();
     }
 
     private void runApp() {
         boolean keepGoing = true;
-        String command = null;
+        String command;
 
         init();
 
@@ -54,6 +63,10 @@ public class WarehouseApp {
             doViewGoods();
         } else if (command.equals("n")) {
             getWarehouse();
+        } else if (command.equals("1")) {
+            saveUser();
+        } else if (command.equals("2")) {
+            loadUser();
         }
         System.out.println("--Press any key to continue--");
         input.next();
@@ -64,8 +77,23 @@ public class WarehouseApp {
     private void init() {
         input = new Scanner(System.in);
         input.useDelimiter("\n");
-        createUser();
-        getWarehouse();
+        System.out.println("\nSelect from:");
+        System.out.println("\tenter l for -> load from file");
+        System.out.println("\tenter n for -> new user");
+        String command = input.next();
+        if (command.equals("l")) {
+            loadUser();
+            System.out.println("enter password for " + user.getName());
+            if (!input.next().equals(user.getPassword())) {
+                System.out.println("bad password!");
+                init();
+            }
+            warehouse = user.getWareHouses().get(0);
+        } else if (command.equals("n")) {
+            createUser();
+            getWarehouse();
+        }
+
     }
 
     // EFFECTS: displays menu of options to user
@@ -79,6 +107,8 @@ public class WarehouseApp {
         System.out.println("\tenter g for -> view goods menu in warehouse");
         System.out.println("\tenter n for -> switch warehouse or create a new one");
         System.out.println("\tenter q for -> quit");
+        System.out.println("\t1 -> save work room to file");  ///
+        //System.out.println("\t2 -> load work room from file");
     }
 
     // MODIFIES: this
@@ -186,6 +216,30 @@ public class WarehouseApp {
             this.warehouse = this.user.getWareHouses().get(index - 1);
         }
     }
+
+    // EFFECTS: saves the user to file
+    private void saveUser() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(user);
+            jsonWriter.close();
+            System.out.println("Saved " + user.getName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads user from file
+    private void loadUser() {
+        try {
+            user = jsonReader.read();
+            System.out.println("Loaded " + user.getName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
+
 }
 
 

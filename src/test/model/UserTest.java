@@ -24,13 +24,15 @@ class UserTest {
 
     @Test
     void testAddWarehouse() {
-        testUser.addWarehouse("Warehouse1");
+        Warehouse w1 = new Warehouse("w1");
+        Warehouse w2 = new Warehouse("w2");
+        testUser.addWarehouse(w1);
         assertEquals(1, testUser.getWareHouses().size());
-        assertEquals("Warehouse1", testUser.getWareHouses().get(0).getName());
+        assertEquals("w1", testUser.getWareHouses().get(0).getName());
 
-        testUser.addWarehouse("Warehouse2");
+        testUser.addWarehouse(w2);
         assertEquals(2, testUser.getWareHouses().size());
-        assertEquals("Warehouse2", testUser.getWareHouses().get(1).getName());
+        assertEquals("w2", testUser.getWareHouses().get(1).getName());
     }
 
 }

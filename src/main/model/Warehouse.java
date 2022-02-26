@@ -1,17 +1,20 @@
 package model;
 
 import exceptions.InvalidNumberException;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 // Represents a warehouse that has a name, total cost of goods in warehouse
 // list of goods on menu, and list of transaction records.
-public class Warehouse {
+public class Warehouse implements Writable {
     private String name;
     private double totalCostInWarehouse; // total costs of goods currently in warehouse
-    private final ArrayList<Goods> goodsInWarehouseMenu; // the list of goods that has been added to warehouse
-    private final ArrayList<String> transactionRecords; // records of purchase and sells
+    private ArrayList<Goods> goodsInWarehouseMenu; // the list of goods that has been added to warehouse
+    private ArrayList<String> transactionRecords; // records of purchase and sells
 
     // EFFECTS : constructs a warehouse with given name,
     //           set total value in stock as 0,
@@ -43,14 +46,6 @@ public class Warehouse {
         }
         totalCostInWarehouse += (amount * cost);
 
-//        if (goodsInWarehouseMenu.contains(good)) {
-//            good.purchase(amount, cost);
-//            totalCostInWarehouse += (amount * cost);
-//        } else {
-//            good.purchase(amount, cost);
-//            this.goodsInWarehouseMenu.add(good);
-//            totalCostInWarehouse += (amount * cost);
-//        }
         LocalDate date = LocalDate.now();
         String s = date + ": Purchased " + amount + " " + nameOfGoods + " at cost of " + cost;
         transactionRecords.add(s);
@@ -82,22 +77,61 @@ public class Warehouse {
         this.name = newName;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("totalCostInWarehouse", totalCostInWarehouse);
+        json.put("goodsInWarehouseMenu", goodsToJason());
+        json.put("transactionRecords", transactionRecordsToJason());
+        return json;
+    }
+
+    // EFFECTS: returns goods in warehouse as a JSON array
+    private JSONArray goodsToJason() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Goods g : goodsInWarehouseMenu) {
+            jsonArray.put(g.toJson());
+        }
+        return jsonArray;
+    }
+
+    // EFFECTS: returns transaction records in warehouse as a JSON array
+    private JSONArray transactionRecordsToJason() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (String s : transactionRecords) {
+            jsonArray.put(s);
+        }
+        return jsonArray;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: add a transaction records to warehouse
+    public void addTransactionRecords(String s) {
+        this.transactionRecords.add(s);
+    }
+
+    public void addGoods(Goods g) {
+        this.goodsInWarehouseMenu.add(g);
+    }
+
+
+
     // getters
     public String getName() {
         return name;
     }
 
-    // getters
     public double getTotalCostInWarehouse() {
         return this.totalCostInWarehouse;
     }
 
-    // getters
     public ArrayList<Goods> getGoodsInWarehouseMenu() {
         return goodsInWarehouseMenu;
     }
 
-    // getters
     public ArrayList<String> getTransactionRecords() {
         return transactionRecords;
     }
