@@ -73,23 +73,11 @@ class GoodsTest {
             fail();
         }
 
-        assertEquals("MacBook Pro", testGoods.getName());
-        assertEquals(10, testGoods.getAverageCost());
-        assertEquals(5, testGoods.getQuantityInStock());
-        assertEquals(50, testGoods.getTotalCostInStock());
-
-
         try {
             testGoods.purchase(5,20);
         } catch (InvalidNumberException e) {
             fail();
         }
-
-        assertEquals("MacBook Pro", testGoods.getName());
-        assertEquals(15, testGoods.getAverageCost());
-        assertEquals(10, testGoods.getQuantityInStock());
-        assertEquals(150, testGoods.getTotalCostInStock());
-
 
         try {
             testGoods.sell(5,30);
@@ -128,6 +116,14 @@ class GoodsTest {
         } catch (InvalidNumberException e) {
             // expected
         }
+
+        try {
+            testGoods.sell(10,-10);
+            fail("exception is not thrown when price < 0");
+        } catch (InvalidNumberException e){
+            //expected
+
+        }
     }
 
     @Test
@@ -149,6 +145,32 @@ class GoodsTest {
                 " Average cost: 10.0,\n" +
                 " Total cost of goods in stock: 50.0"
                 , testGoods.statusToString());
+    }
+
+    @Test
+    void testSetQuantityInStock() {
+        testGoods.setQuantityInStock(100);
+        assertEquals(100,testGoods.getQuantityInStock());
+        testGoods.setQuantityInStock(200);
+        assertEquals(200,testGoods.getQuantityInStock());
+    }
+
+    @Test
+    void testSetAverageCost() {
+        testGoods.setAverageCost(1);
+        assertEquals(1,testGoods.getAverageCost());
+        testGoods.setAverageCost(2);
+        assertEquals(2,testGoods.getAverageCost());
+
+    }
+
+    @Test
+    void testSetTotalCostInStock() {
+        testGoods.setTotalCostInStock(100);
+        assertEquals(100,testGoods.getTotalCostInStock());
+        testGoods.setTotalCostInStock(200);
+        assertEquals(200,testGoods.getTotalCostInStock());
+
     }
 
 }

@@ -80,17 +80,25 @@ public class Goods implements Writable {
         return this.totalCostInStock;
     }
 
-    // setters
+    // REQUIRES: number >= 0
+    // MODIFIES: this
+    // EFFECTS: set quantity in stock of goods to be the given number
     public void setQuantityInStock(int number) {
         this.quantityInStock = number;
     }
 
-    public void setAverageCost(double num) {
-        this.averageCost = num;
+    // REQUIRES: number >= 0
+    // MODIFIES: this
+    // EFFECTS: set average costs of goods to be the given number
+    public void setAverageCost(double number) {
+        this.averageCost = number;
     }
 
-    public void setTotalCostInStock(double num) {
-        this.totalCostInStock = num;
+    // REQUIRES: number >= 0
+    // MODIFIES: this
+    // EFFECTS: set total costs of goods in stock to be the given number
+    public void setTotalCostInStock(double number) {
+        this.totalCostInStock = number;
     }
 
     @Override
@@ -98,8 +106,8 @@ public class Goods implements Writable {
         JSONObject json = new JSONObject();
         json.put("name", name);
         json.put("quantityInStock", quantityInStock);
-        json.put("averageCost",averageCost);
-        json.put("totalCostInStock",totalCostInStock);
+        json.put("averageCost", averageCost);
+        json.put("totalCostInStock", totalCostInStock);
         return json;
     }
 }

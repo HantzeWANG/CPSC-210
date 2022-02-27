@@ -113,11 +113,11 @@ public class Warehouse implements Writable {
         this.transactionRecords.add(s);
     }
 
+    // MODIFIES: this
+    // EFFECTS: add a goods to warehouse
     public void addGoods(Goods g) {
         this.goodsInWarehouseMenu.add(g);
     }
-
-
 
     // getters
     public String getName() {

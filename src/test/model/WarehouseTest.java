@@ -116,4 +116,30 @@ public class WarehouseTest {
         assertEquals("newName", testWarehouse.getName());
     }
 
+    @Test
+    void testAddTransactionRecords() {
+        testWarehouse.addTransactionRecords("test");
+        assertEquals(1,testWarehouse.getTransactionRecords().size());
+        assertEquals("test",testWarehouse.getTransactionRecords().get(0));
+
+        testWarehouse.addTransactionRecords("test1");
+        assertEquals(2,testWarehouse.getTransactionRecords().size());
+        assertEquals("test1",testWarehouse.getTransactionRecords().get(1));
+    }
+
+    @Test
+    void testAddGoods() {
+        Goods g1 = new Goods("g1");
+        Goods g2 = new Goods("g2");
+        testWarehouse.addGoods(g1);
+        assertEquals(1,testWarehouse.getGoodsInWarehouseMenu().size());
+        assertEquals(g1,testWarehouse.getGoodsInWarehouseMenu().get(0));
+
+        testWarehouse.addGoods(g2);
+        assertEquals(2,testWarehouse.getGoodsInWarehouseMenu().size());
+        assertEquals(g2,testWarehouse.getGoodsInWarehouseMenu().get(1));
+
+    }
+
+
 }

@@ -48,26 +48,22 @@ public class User implements Writable {
         for (Warehouse w : warehouses) {
             jsonArray.put(w.toJson());
         }
-
         return jsonArray;
     }
 
-    // getter
+    // getters
     public String getName() {
         return name;
     }
 
-    // getter
     public String getEmail() {
         return email;
     }
 
-    // getter
     public String getPassword() {
         return password;
     }
 
-    // getter
     public ArrayList<Warehouse> getWareHouses() {
         return this.warehouses;
     }
