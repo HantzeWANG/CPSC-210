@@ -34,9 +34,9 @@ public class Warehouse implements Writable {
     public void purchaseGoods(String nameOfGoods, int amount, double cost) throws InvalidNumberException {
         Goods good = new Goods(nameOfGoods);
         for (Goods g : goodsInWarehouseMenu) {
-            Goods goods = g;
-            if (nameOfGoods.equals(goods.getName())) {
-                good = goods;
+
+            if (nameOfGoods.equals(g.getName())) {
+                good = g;
             }
         }
 
@@ -134,5 +134,10 @@ public class Warehouse implements Writable {
 
     public ArrayList<String> getTransactionRecords() {
         return transactionRecords;
+    }
+
+    // setters
+    public void setTotalCostInWarehouse(double number) {
+        this.totalCostInWarehouse = number;
     }
 }

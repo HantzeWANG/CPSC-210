@@ -138,7 +138,14 @@ public class WarehouseTest {
         testWarehouse.addGoods(g2);
         assertEquals(2,testWarehouse.getGoodsInWarehouseMenu().size());
         assertEquals(g2,testWarehouse.getGoodsInWarehouseMenu().get(1));
+    }
 
+    @Test
+    void testSetTotalCostInWarehouse() {
+        testWarehouse.setTotalCostInWarehouse(100);
+        assertEquals(100,testWarehouse.getTotalCostInWarehouse());
+        testWarehouse.setTotalCostInWarehouse(200);
+        assertEquals(200,testWarehouse.getTotalCostInWarehouse());
     }
 
 

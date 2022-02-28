@@ -76,10 +76,12 @@ public class JsonReader {
     // EFFECTS: parses warehouse from JSON object and adds it to user
     private void addWarehouse(User user, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
+        double totalCostInWarehouse = jsonObject.getDouble("totalCostInWarehouse");
         JSONArray transactionRecords = jsonObject.getJSONArray("transactionRecords");
         JSONArray goodsInWarehouseMenu = jsonObject.getJSONArray("goodsInWarehouseMenu");
 
         Warehouse wh = new Warehouse(name);
+        wh.setTotalCostInWarehouse(totalCostInWarehouse);
 
         for (Object tr : transactionRecords) {
             wh.addTransactionRecords(tr.toString());

@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 // Inventory management application
 public class WarehouseApp {
-    private static final String JSON_STORE = "./data/test.json";
+    private static final String JSON_STORE = "./data/user.json";
     private User user;
     private Warehouse warehouse;
     private Scanner input;
