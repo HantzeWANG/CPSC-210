@@ -1,0 +1,24 @@
+{
+    "password": "pw",
+    "name": "hz",
+    "warehouses": [
+        {
+            "totalCostInWarehouse": 10,
+            "transactionRecords": ["2022-02-28: Purchased 10 apple at cost of 1.0"],
+            "name": "wh1",
+            "goodsInWarehouseMenu": [{
+                "quantityInStock": 10,
+                "name": "apple",
+                "averageCost": 1,
+                "totalCostInStock": 10
+            }]
+        },
+        {
+            "totalCostInWarehouse": 0,
+            "transactionRecords": [],
+            "name": "wh2",
+            "goodsInWarehouseMenu": []
+        }
+    ],
+    "email": "em"
+}
