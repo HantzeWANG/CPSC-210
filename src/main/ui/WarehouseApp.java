@@ -41,6 +41,7 @@ public class WarehouseApp {
             command = command.toLowerCase();
 
             if (command.equals("q")) {
+                ifSave();
                 keepGoing = false;
             } else {
                 processCommand(command);
@@ -63,10 +64,6 @@ public class WarehouseApp {
             doViewGoods();
         } else if (command.equals("n")) {
             getWarehouse();
-        } else if (command.equals("1")) {
-            saveUser();
-        } else if (command.equals("2")) {
-            loadUser();
         }
         System.out.println("--Press any key to continue--");
         input.next();
@@ -107,8 +104,6 @@ public class WarehouseApp {
         System.out.println("\tenter g for -> view goods menu in warehouse");
         System.out.println("\tenter n for -> switch warehouse or create a new one");
         System.out.println("\tenter q for -> quit");
-        System.out.println("\t1 -> save work room to file");  ///
-        //System.out.println("\t2 -> load work room from file");
     }
 
     // MODIFIES: this
@@ -194,7 +189,6 @@ public class WarehouseApp {
         System.out.println("Welcome! " + username);
     }
 
-
     // EFFECTS: get the warehouse user want to use
     private void getWarehouse() {
         System.out.println("\nPlease select warehouse: ");
@@ -237,6 +231,18 @@ public class WarehouseApp {
             System.out.println("Loaded " + user.getName() + " from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: if save, write the user to file
+    private void ifSave() {
+        System.out.println("Do you want to save the current user?");
+        System.out.println("enter y for -> Yes");
+        System.out.println("enter n for -> No");
+        String str = input.next();
+        if (str.equals("y")) {
+            saveUser();
         }
     }
 
