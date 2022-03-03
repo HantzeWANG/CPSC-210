@@ -16,12 +16,14 @@ public class JsonReader {
     private String source;
 
     // EFFECTS: constructs reader to read from source file
+    // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
     public JsonReader(String source) {
         this.source = source;
     }
 
     // EFFECTS: reads a user from file and returns it;
     // throws IOException if an error occurs reading data from file
+    // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
     public User read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
@@ -29,6 +31,7 @@ public class JsonReader {
     }
 
     // EFFECTS: reads source file as string and returns it
+    // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
     private String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
 
@@ -91,8 +94,6 @@ public class JsonReader {
             JSONObject nextGoods = (JSONObject) goods;
             addGoods(wh,nextGoods);
         }
-
-
         user.addWarehouse(wh);
     }
 }
