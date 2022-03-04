@@ -77,6 +77,7 @@ public class Warehouse implements Writable {
         this.name = newName;
     }
 
+    // EFFECTS: turn the file into Json
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

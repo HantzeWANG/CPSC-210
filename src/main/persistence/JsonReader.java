@@ -62,6 +62,8 @@ public class JsonReader {
         }
     }
 
+    // MODIFIES: Warehouse
+    // EFFECTS: parses goods from JSON object and add goods to a warehouse
     private void addGoods(Warehouse wh, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         Goods goods = new Goods(name);
@@ -72,7 +74,6 @@ public class JsonReader {
         goods.setQuantityInStock(quantityInStock);
         goods.setTotalCostInStock(totalCostInStock);
         wh.addGoods(goods);
-
     }
 
     // MODIFIES: user

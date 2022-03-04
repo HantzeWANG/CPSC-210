@@ -47,7 +47,6 @@ public class WarehouseApp {
                 processCommand(command);
             }
         }
-
         System.out.println("\nGoodbye!");
     }
 
@@ -90,7 +89,6 @@ public class WarehouseApp {
             createUser();
             getWarehouse();
         }
-
     }
 
     // EFFECTS: displays menu of options to user
@@ -124,7 +122,6 @@ public class WarehouseApp {
         }
     }
 
-
     // MODIFIES: this
     // EFFECTS: sell the goods with given name at given price for given quantity
     private void doSell() {
@@ -142,7 +139,7 @@ public class WarehouseApp {
         System.out.println("Average cost: " + goodsForSell.getAverageCost());
         System.out.println("Enter amount to sell: ");
         int amount = input.nextInt();
-        System.out.print("Enter selling price of each goods : ");
+        System.out.print("Enter selling price of each goods: ");
         double price = input.nextDouble();
         try {
             warehouse.sellGoods(goodsForSell.getName(), amount, price);

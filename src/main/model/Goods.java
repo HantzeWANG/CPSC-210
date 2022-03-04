@@ -101,6 +101,7 @@ public class Goods implements Writable {
         this.totalCostInStock = number;
     }
 
+    // EFFECTS: write the file into JSON
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
