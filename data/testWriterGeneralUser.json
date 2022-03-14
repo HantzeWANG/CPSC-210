@@ -4,7 +4,7 @@
     "warehouses": [
         {
             "totalCostInWarehouse": 10,
-            "transactionRecords": ["2022-03-03: Purchased 10 apple at cost of 1.0"],
+            "transactionRecords": ["2022-03-14: Purchased 10 apple at cost of 1.0"],
             "name": "wh1",
             "goodsInWarehouseMenu": [{
                 "quantityInStock": 10,

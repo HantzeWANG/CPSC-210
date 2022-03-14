@@ -1,27 +1,40 @@
 {
-    "password": "ying",
-    "name": "Ying",
-    "warehouses": [{
-        "totalCostInWarehouse": 200,
-        "transactionRecords": [
-            "2022-02-28: Purchased 100 apple at cost of 1.0",
-            "2022-02-28: Purchased 100 pear at cost of 1.0"
-        ],
-        "name": "wh1",
-        "goodsInWarehouseMenu": [
-            {
-                "quantityInStock": 100,
-                "name": "apple",
-                "averageCost": 1,
+    "password": "123456",
+    "name": "Hanze",
+    "warehouses": [
+        {
+            "totalCostInWarehouse": 140,
+            "transactionRecords": [
+                "2022-03-14: Purchased 100 apple at cost of 1.0",
+                "2022-03-14: Purchased 20 banana at cost of 2.0"
+            ],
+            "name": "fruit",
+            "goodsInWarehouseMenu": [
+                {
+                    "quantityInStock": 100,
+                    "name": "apple",
+                    "averageCost": 1,
+                    "totalCostInStock": 100
+                },
+                {
+                    "quantityInStock": 20,
+                    "name": "banana",
+                    "averageCost": 2,
+                    "totalCostInStock": 40
+                }
+            ]
+        },
+        {
+            "totalCostInWarehouse": 100,
+            "transactionRecords": ["2022-03-14: Purchased 2 chair at cost of 50.0"],
+            "name": "funiture",
+            "goodsInWarehouseMenu": [{
+                "quantityInStock": 2,
+                "name": "chair",
+                "averageCost": 50,
                 "totalCostInStock": 100
-            },
-            {
-                "quantityInStock": 100,
-                "name": "pear",
-                "averageCost": 1,
-                "totalCostInStock": 100
-            }
-        ]
-    }],
-    "email": "ying@nju.edu.cn"
+            }]
+        }
+    ],
+    "email": "hanzewang123@outlook.com"
 }
