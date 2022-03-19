@@ -31,6 +31,8 @@ public class GUI extends JFrame {
     JPanel transactionsPanel;
     JPanel goodsDetailPanel;
     JPanel sellGoodsPanel;
+    JPanel purchaseGoodsPanel;
+    JPanel createUserPanel;
 
 
     CardLayout cards = new CardLayout();
@@ -46,6 +48,8 @@ public class GUI extends JFrame {
         initializeTransactionPanel();
         initializeGoodsDetailPanel();
         initializeSellGoodsPanel();
+        initializePurchaseGoodsPanel();
+        initializeCreateUserPanel();
 
         // Cards Layout
         panelCont.add(beginningPanel, "1");
@@ -55,11 +59,15 @@ public class GUI extends JFrame {
         panelCont.add(transactionsPanel, "5");
         panelCont.add(goodsDetailPanel, "6");
         panelCont.add(sellGoodsPanel, "7");
+        panelCont.add(purchaseGoodsPanel, "8");
+        panelCont.add(createUserPanel,"9");
 
         cards.show(panelCont, "1");
 
 
     }
+
+
 
 
     private void initializeFields() {
@@ -115,6 +123,11 @@ public class GUI extends JFrame {
 
     private void initializeBeginningPanel() {
         beginningPanel = new JPanel();
+        updateBeginningPanel();
+    }
+
+    private void updateBeginningPanel() {
+        beginningPanel.removeAll();
         beginningPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 1000, 70));
 
         JLabel label = new JLabel("Manage all your inventory with ease!", JLabel.LEFT);
@@ -134,7 +147,7 @@ public class GUI extends JFrame {
         buttonToCreate.setText("Create a new user account");
         buttonToCreate.setFont(new Font("Comic Sans", Font.BOLD, 25));
         buttonToCreate.setBackground(Color.WHITE);
-        //buttonToCreate.addActionListener(e -> cards.show(panelCont,"2"));
+        buttonToCreate.addActionListener(e -> cards.show(panelCont,"9"));
 
         beginningPanel.add(buttonToLoad);
         beginningPanel.add(buttonToCreate);
@@ -205,19 +218,11 @@ public class GUI extends JFrame {
         mainMenuPanel.add(label);
 
         addButtonsToMainMenu();
-
-        JButton backButton = new JButton("Back");
-        backButton.setBounds(100, 170, 80, 30);
-        backButton.addActionListener(e -> cards.show(panelCont, "2"));
-        mainMenuPanel.add(backButton);
     }
 
     private void addButtonsToMainMenu() {
         // Button to purchase
-        JButton buttonToBuy = new JButton();
-        buttonToBuy.setText("      Purchase      ");
-        buttonToBuy.setFont(new Font("Comic Sans", Font.BOLD, 20));
-        buttonToBuy.setBackground(Color.WHITE);
+        JButton buttonToBuy = getButtonToBuy();
 
         JButton buttonToSell = new JButton();
         buttonToSell.setText("           Sell           ");
@@ -241,6 +246,15 @@ public class GUI extends JFrame {
         mainMenuPanel.add(buttonToSell);
         mainMenuPanel.add(buttonCheckInventory);
         mainMenuPanel.add(buttonCheckTransactions);
+    }
+
+    private JButton getButtonToBuy() {
+        JButton buttonToBuy = new JButton();
+        buttonToBuy.setText("      Purchase      ");
+        buttonToBuy.setFont(new Font("Comic Sans", Font.BOLD, 20));
+        buttonToBuy.setBackground(Color.WHITE);
+        buttonToBuy.addActionListener(e -> cards.show(panelCont, "8"));
+        return buttonToBuy;
     }
 
     private void initializeGoodsMenuPanel() {
@@ -307,6 +321,19 @@ public class GUI extends JFrame {
 
     private void initializeSellGoodsPanel() {
         sellGoodsPanel = new JPanel();
+        updateSellGoodsPanel();
+    }
+
+    private void updateSellGoodsPanel() {
+        if ((warehouse.getGoodsInWarehouseMenu().isEmpty())) {
+            goodsToSell = null;
+
+        } else {
+            goodsToSell = warehouse.getGoodsInWarehouseMenu().get(0);
+        }
+
+
+        sellGoodsPanel.removeAll();
         addComponentsToSellGoodsPanel();
 
         JLabel quantityLeft = getJLabel();
@@ -332,14 +359,11 @@ public class GUI extends JFrame {
         confirmButton.setBounds(370, 300, 200, 30);
         confirmButton.setFont(new Font("Comic Sans", Font.BOLD, 20));
         confirmButton.setBackground(Color.WHITE);
-        confirmButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                doSell(quantityToSell, priceSell, quantityLeft);
-                updateGoodsMenu();
-                updateTransactions();
+        confirmButton.addActionListener(e -> {
+            doSell(quantityToSell, priceSell, quantityLeft);
+            updateGoodsMenu();
+            updateTransactions();
 
-            }
         });
         sellGoodsPanel.add(confirmButton);
     }
@@ -406,6 +430,95 @@ public class GUI extends JFrame {
         goodsMenuPanel.add(backButton);
     }
 
+    private void initializePurchaseGoodsPanel() {
+        purchaseGoodsPanel = new JPanel();
+        purchaseGoodsPanel.setLayout(null);
+
+        addTitleandBackToPurchasePanel();
+
+        JTextField quantityToPurchase = new JTextField();
+        quantityToPurchase.setBounds(500, 180, 100, 30);
+        quantityToPurchase.setForeground(Color.BLACK);
+        quantityToPurchase.setFont(new Font("Serif", Font.BOLD, 20));
+        purchaseGoodsPanel.add(quantityToPurchase);
+
+        JTextField cost = new JTextField();
+        cost.setBounds(500, 230, 100, 30);
+        cost.setForeground(Color.BLACK);
+        cost.setFont(new Font("Serif", Font.BOLD, 20));
+        purchaseGoodsPanel.add(cost);
+
+        JTextField name = new JTextField();
+        name.setBounds(500, 130, 100, 30);
+        name.setForeground(Color.BLACK);
+        name.setFont(new Font("Serif", Font.BOLD, 20));
+        purchaseGoodsPanel.add(name);
+
+        addLabelsToPurchasePanel();
+
+        addConfirmButtonToPurchasePanel(quantityToPurchase, cost, name);
+    }
+
+    private void addConfirmButtonToPurchasePanel(JTextField quantityToPurchase, JTextField cost, JTextField name) {
+        JButton confirmButton = new JButton("confirm");
+        confirmButton.setBounds(370, 300, 200, 30);
+        confirmButton.setFont(new Font("Comic Sans", Font.BOLD, 20));
+        confirmButton.setBackground(Color.WHITE);
+        confirmButton.addActionListener(e -> {
+
+            try {
+                String s1 = name.getText();
+                name.setText("");
+
+                String s2 = quantityToPurchase.getText();
+                int quantity = Integer.parseInt(s2);
+                quantityToPurchase.setText("");
+
+                String s3 = cost.getText();
+                double price = Double.parseDouble(s3);
+                cost.setText("");
+
+                warehouse.purchaseGoods(s1,quantity,price);
+                updateTransactions();
+                updateGoodsMenu();
+                updateSellGoodsPanel();
+            } catch (InvalidNumberException ex) {
+                JOptionPane.showMessageDialog(sellGoodsPanel, "bad input!");
+            }
+        });
+        purchaseGoodsPanel.add(confirmButton);
+    }
+
+    private void addLabelsToPurchasePanel() {
+        JLabel l1 = new JLabel("Enter quantity: ");
+        l1.setBounds(300, 180, 200, 30);
+        l1.setFont(new Font("MV Boli", Font.BOLD, 20));
+        purchaseGoodsPanel.add(l1);
+
+        JLabel l2 = new JLabel("Enter cost:");
+        l2.setBounds(300, 230, 200, 30);
+        l2.setFont(new Font("MV Boli", Font.BOLD, 20));
+        purchaseGoodsPanel.add(l2);
+
+        JLabel l3 = new JLabel("Enter name:");
+        l3.setBounds(300, 130, 200, 30);
+        l3.setFont(new Font("MV Boli", Font.BOLD, 20));
+        purchaseGoodsPanel.add(l3);
+    }
+
+    private void addTitleandBackToPurchasePanel() {
+        JLabel label = new JLabel("Purchase");
+        label.setForeground(Color.RED);
+        label.setFont(new Font("MV Boli", Font.BOLD, 40));
+        label.setBounds(390, 50, 300, 50);
+        purchaseGoodsPanel.add(label);
+
+        JButton backButton = new JButton("Back");
+        backButton.setBounds(420, 400, 80, 30);
+        backButton.addActionListener(e -> cards.show(panelCont, "3"));
+        purchaseGoodsPanel.add(backButton);
+    }
+
     private void addComboBox(JLabel quantityLeft) {
         JComboBox comboBox = new JComboBox(getGoodsName());
         comboBox.setFont(new Font("Serif", Font.BOLD, 20));
@@ -420,11 +533,16 @@ public class GUI extends JFrame {
     }
 
     private JLabel getJLabel() {
-        JLabel quantityLeft = new JLabel(goodsToSell.getQuantityInStock() + " left");
-        quantityLeft.setFont(new Font("MV Boli", Font.BOLD, 20));
-        quantityLeft.setBounds(650, 180, 100, 30);
-        sellGoodsPanel.add(quantityLeft);
-        return quantityLeft;
+        if (goodsToSell != null) {
+            JLabel quantityLeft = new JLabel(goodsToSell.getQuantityInStock() + " left");
+            quantityLeft.setFont(new Font("MV Boli", Font.BOLD, 20));
+            quantityLeft.setBounds(650, 180, 100, 30);
+            sellGoodsPanel.add(quantityLeft);
+            return quantityLeft;
+        } else {
+            return null;
+        }
+
     }
 
     private void doSell(JTextField quantityToSell, JTextField priceSell, JLabel quantityLeft) {
@@ -473,8 +591,6 @@ public class GUI extends JFrame {
         sellGoodsPanel.add(backButton);
     }
 
-
-
     private String[] getGoodsName() {
         ArrayList<String> listOfNames = new ArrayList<>();
         for (int i = 0; i < this.warehouse.getGoodsInWarehouseMenu().size(); i++) {
@@ -483,6 +599,97 @@ public class GUI extends JFrame {
             listOfNames.add(name);
         }
         return listOfNames.toArray(new String[0]);
+    }
+
+    private void initializeCreateUserPanel() {
+        createUserPanel = new JPanel();
+        createUserPanel.setLayout(null);
+
+        addTitleandBackToCreateUserPanel();
+
+        JTextField userName = new JTextField();
+        userName.setBounds(500, 130, 100, 30);
+        userName.setForeground(Color.BLACK);
+        userName.setFont(new Font("Serif", Font.BOLD, 20));
+        createUserPanel.add(userName);
+
+        JTextField userPassword = new JTextField();
+        userPassword.setBounds(500, 180, 100, 30);
+        userPassword.setForeground(Color.BLACK);
+        userPassword.setFont(new Font("Serif", Font.BOLD, 20));
+        createUserPanel.add(userPassword);
+
+        JTextField userEmail = new JTextField();
+        userEmail.setBounds(500, 230, 100, 30);
+        userEmail.setForeground(Color.BLACK);
+        userEmail.setFont(new Font("Serif", Font.BOLD, 20));
+        createUserPanel.add(userEmail);
+
+        addLabelToCreateUserPanel();
+
+        addConfirmButtonToCreateUserPanel(userName, userPassword, userEmail);
+    }
+
+    private void addTitleandBackToCreateUserPanel() {
+        JLabel label = new JLabel("Create user");
+        label.setForeground(Color.RED);
+        label.setFont(new Font("MV Boli", Font.BOLD, 40));
+        label.setBounds(390, 50, 300, 50);
+        createUserPanel.add(label);
+
+        JButton backButton = new JButton("Back");
+        backButton.setBounds(420, 400, 80, 30);
+        backButton.addActionListener(e -> cards.show(panelCont, "1"));
+        createUserPanel.add(backButton);
+    }
+
+    private void addConfirmButtonToCreateUserPanel(JTextField userName, JTextField userPassword, JTextField userEmail) {
+        JButton confirmButton = new JButton("create");
+        confirmButton.setBounds(370, 300, 200, 30);
+        confirmButton.setFont(new Font("Comic Sans", Font.BOLD, 20));
+        confirmButton.setBackground(Color.WHITE);
+        confirmButton.addActionListener(e -> {
+            String name = userName.getText();
+            userName.setText("");
+            String password = userPassword.getText();
+            userPassword.setText("");
+            String email = userEmail.getText();
+            userEmail.setText("");
+            User newUser = new User(name,email,password);
+            Warehouse newWarehouse = new Warehouse("newWarehouse");
+            newUser.addWarehouse(newWarehouse);
+            user = newUser;
+            warehouse = newWarehouse;
+
+            updateAfterCreateNewUser();
+        });
+
+        createUserPanel.add(confirmButton);
+    }
+
+    private void updateAfterCreateNewUser() {
+        updateGoodsMenu();
+        updateTransactions();
+        updateSellGoodsPanel();
+        updateBeginningPanel();
+        cards.show(panelCont, "3");
+    }
+
+    private void addLabelToCreateUserPanel() {
+        JLabel l1 = new JLabel("Enter username: ");
+        l1.setBounds(300, 130, 200, 30);
+        l1.setFont(new Font("MV Boli", Font.BOLD, 20));
+        createUserPanel.add(l1);
+
+        JLabel l2 = new JLabel("Enter password:");
+        l2.setBounds(300, 180, 200, 30);
+        l2.setFont(new Font("MV Boli", Font.BOLD, 20));
+        createUserPanel.add(l2);
+
+        JLabel l3 = new JLabel("Enter email:");
+        l3.setBounds(300, 230, 200, 30);
+        l3.setFont(new Font("MV Boli", Font.BOLD, 20));
+        createUserPanel.add(l3);
     }
 
 }

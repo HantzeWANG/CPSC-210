@@ -3,26 +3,41 @@
     "name": "Hanze",
     "warehouses": [
         {
-            "totalCostInWarehouse": 43,
+            "totalCostInWarehouse": 10025,
             "transactionRecords": [
                 "2022-03-14: Purchased 100 apple at cost of 1.0",
                 "2022-03-14: Purchased 20 banana at cost of 2.0",
                 "2022-03-18: Sold 1 apple at price of 2.0",
-                "2022-03-18: Sold 2 banana at price of 4.0"
+                "2022-03-18: Sold 2 banana at price of 4.0",
+                "2022-03-19: Purchased 2 orange at cost of 2.0",
+                "2022-03-19: Sold 22 apple at price of 10.0",
+                "2022-03-19: Purchased 100 pineapple at cost of 100.0"
             ],
             "name": "fruit",
             "goodsInWarehouseMenu": [
                 {
-                    "quantityInStock": 92,
+                    "quantityInStock": 70,
                     "name": "apple",
                     "averageCost": 1,
-                    "totalCostInStock": 92
+                    "totalCostInStock": 70
                 },
                 {
                     "quantityInStock": 18,
                     "name": "banana",
                     "averageCost": 2,
                     "totalCostInStock": 36
+                },
+                {
+                    "quantityInStock": 2,
+                    "name": "orange",
+                    "averageCost": 2,
+                    "totalCostInStock": 4
+                },
+                {
+                    "quantityInStock": 100,
+                    "name": "pineapple",
+                    "averageCost": 100,
+                    "totalCostInStock": 10000
                 }
             ]
         },
