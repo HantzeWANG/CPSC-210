@@ -34,7 +34,6 @@ public class GUI extends JFrame {
     JPanel purchaseGoodsPanel;
     JPanel createUserPanel;
 
-
     CardLayout cards = new CardLayout();
 
     public GUI() {
@@ -62,9 +61,7 @@ public class GUI extends JFrame {
         panelCont.add(purchaseGoodsPanel, "8");
         panelCont.add(createUserPanel,"9");
 
-        cards.show(panelCont, "1");
-
-
+        cards.show(panelCont, "1"); // show beginning panel initially
     }
 
 
@@ -98,6 +95,7 @@ public class GUI extends JFrame {
         addClosingListener();
     }
 
+    // ask if the user wna tot save when closing
     private void addClosingListener() {
         this.addWindowListener(new WindowAdapter() {
             @Override
@@ -126,6 +124,7 @@ public class GUI extends JFrame {
         updateBeginningPanel();
     }
 
+    // paint the beginning panel again
     private void updateBeginningPanel() {
         beginningPanel.removeAll();
         beginningPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 1000, 70));
@@ -153,6 +152,7 @@ public class GUI extends JFrame {
         beginningPanel.add(buttonToCreate);
     }
 
+    // initialize log in panel
     private void initializeLogInPanel() {
         logInPanel = new JPanel();
         logInPanel.setLayout(null);
@@ -182,6 +182,7 @@ public class GUI extends JFrame {
 
     }
 
+    // add JLabels and JButtons to login Panel
     private void addComponentsToLogInPanel() {
         JLabel l1 = new JLabel("Username:");
         l1.setBounds(300, 80, 150, 30);
@@ -208,6 +209,7 @@ public class GUI extends JFrame {
         logInPanel.add(backButton);
     }
 
+    // EFFECTS: initialize the main menu
     private void initializeMainMenuPanel() {
         mainMenuPanel = new JPanel();
         mainMenuPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 1000, 30));
@@ -220,6 +222,7 @@ public class GUI extends JFrame {
         addButtonsToMainMenu();
     }
 
+    // EFFECTS: add JButtons to main menu
     private void addButtonsToMainMenu() {
         // Button to purchase
         JButton buttonToBuy = getButtonToBuy();
@@ -248,6 +251,7 @@ public class GUI extends JFrame {
         mainMenuPanel.add(buttonCheckTransactions);
     }
 
+    // EFFECTS: add helpers to get button to buy for main menu
     private JButton getButtonToBuy() {
         JButton buttonToBuy = new JButton();
         buttonToBuy.setText("      Purchase      ");
@@ -257,11 +261,13 @@ public class GUI extends JFrame {
         return buttonToBuy;
     }
 
+    // EFFECTS: initialize goods menu
     private void initializeGoodsMenuPanel() {
         goodsMenuPanel = new JPanel();
         updateGoodsMenu();
     }
 
+    // EFFECTS: add action listener to JTable
     private void addTableListener(JTable table) {
         table.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
@@ -279,7 +285,7 @@ public class GUI extends JFrame {
         });
     }
 
-
+    // EFFECTS: repaint the good details panel
     private void updateGoodsDetailPanel(int row) {
         goodsDetailPanel.removeAll();
 
@@ -307,23 +313,25 @@ public class GUI extends JFrame {
         goodsDetailPanel.add(backButton);
     }
 
+    // EFFECTS: initialize goods detail panel
     private void initializeGoodsDetailPanel() {
         goodsDetailPanel = new JPanel();
         goodsDetailPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 1000, 10));
-
-
     }
 
+    // EFFECTS: initialize transaction panel
     private void initializeTransactionPanel() {
         transactionsPanel = new JPanel();
         updateTransactions();
     }
 
+    // EFFECTS: initialize sell goods panel
     private void initializeSellGoodsPanel() {
         sellGoodsPanel = new JPanel();
         updateSellGoodsPanel();
     }
 
+    // EFFECTS: update sell goods panel
     private void updateSellGoodsPanel() {
         if ((warehouse.getGoodsInWarehouseMenu().isEmpty())) {
             goodsToSell = null;
@@ -354,6 +362,7 @@ public class GUI extends JFrame {
         addConfirmButton(quantityLeft, quantityToSell, priceSell);
     }
 
+    // EFFECTS: add confirm button to sell panel
     private void addConfirmButton(JLabel quantityLeft, JTextField quantityToSell, JTextField priceSell) {
         JButton confirmButton = new JButton("confirm");
         confirmButton.setBounds(370, 300, 200, 30);
@@ -368,6 +377,7 @@ public class GUI extends JFrame {
         sellGoodsPanel.add(confirmButton);
     }
 
+    // EFFECTS: repaint the transaction panel
     private void updateTransactions() {
         transactionsPanel.removeAll();
         transactionsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 1000, 10));
@@ -399,6 +409,7 @@ public class GUI extends JFrame {
         transactionsPanel.add(backButton);
     }
 
+    // EFFECTS: repaint the goods menu
     private void updateGoodsMenu() {
         goodsMenuPanel.removeAll();
 
@@ -430,11 +441,12 @@ public class GUI extends JFrame {
         goodsMenuPanel.add(backButton);
     }
 
+    // EFFECTS: initialize purchase panel
     private void initializePurchaseGoodsPanel() {
         purchaseGoodsPanel = new JPanel();
         purchaseGoodsPanel.setLayout(null);
 
-        addTitleandBackToPurchasePanel();
+        addTitleAndBackToPurchasePanel();
 
         JTextField quantityToPurchase = new JTextField();
         quantityToPurchase.setBounds(500, 180, 100, 30);
@@ -459,6 +471,7 @@ public class GUI extends JFrame {
         addConfirmButtonToPurchasePanel(quantityToPurchase, cost, name);
     }
 
+    // EFFECTS: add confirm button to purchase panel
     private void addConfirmButtonToPurchasePanel(JTextField quantityToPurchase, JTextField cost, JTextField name) {
         JButton confirmButton = new JButton("confirm");
         confirmButton.setBounds(370, 300, 200, 30);
@@ -489,6 +502,7 @@ public class GUI extends JFrame {
         purchaseGoodsPanel.add(confirmButton);
     }
 
+    // EFFECTS: add labels to purchase panel
     private void addLabelsToPurchasePanel() {
         JLabel l1 = new JLabel("Enter quantity: ");
         l1.setBounds(300, 180, 200, 30);
@@ -506,7 +520,8 @@ public class GUI extends JFrame {
         purchaseGoodsPanel.add(l3);
     }
 
-    private void addTitleandBackToPurchasePanel() {
+    // EFFECTS: add title and buttons to purchase panel
+    private void addTitleAndBackToPurchasePanel() {
         JLabel label = new JLabel("Purchase");
         label.setForeground(Color.RED);
         label.setFont(new Font("MV Boli", Font.BOLD, 40));
@@ -519,6 +534,7 @@ public class GUI extends JFrame {
         purchaseGoodsPanel.add(backButton);
     }
 
+    // EFFECTS: add Combo box to sell panel
     private void addComboBox(JLabel quantityLeft) {
         JComboBox comboBox = new JComboBox(getGoodsName());
         comboBox.setFont(new Font("Serif", Font.BOLD, 20));
@@ -532,6 +548,7 @@ public class GUI extends JFrame {
         });
     }
 
+    // EFFECTS: get the label for left quantity
     private JLabel getJLabel() {
         if (goodsToSell != null) {
             JLabel quantityLeft = new JLabel(goodsToSell.getQuantityInStock() + " left");
@@ -545,6 +562,7 @@ public class GUI extends JFrame {
 
     }
 
+    // EFFECTS: do sell after clicking the sell button
     private void doSell(JTextField quantityToSell, JTextField priceSell, JLabel quantityLeft) {
         String s1 = quantityToSell.getText();
         quantityToSell.setText("");
@@ -560,6 +578,7 @@ public class GUI extends JFrame {
         quantityLeft.setText(goodsToSell.getQuantityInStock() + " left");
     }
 
+    // EFFECTS: add buttons and labels to sell goods panel
     private void addComponentsToSellGoodsPanel() {
 
         sellGoodsPanel.setLayout(null);
@@ -591,6 +610,7 @@ public class GUI extends JFrame {
         sellGoodsPanel.add(backButton);
     }
 
+    // EFFECTS: get goods name as string
     private String[] getGoodsName() {
         ArrayList<String> listOfNames = new ArrayList<>();
         for (int i = 0; i < this.warehouse.getGoodsInWarehouseMenu().size(); i++) {
@@ -601,11 +621,12 @@ public class GUI extends JFrame {
         return listOfNames.toArray(new String[0]);
     }
 
+    //EFFECTS: initialize create user panel
     private void initializeCreateUserPanel() {
         createUserPanel = new JPanel();
         createUserPanel.setLayout(null);
 
-        addTitleandBackToCreateUserPanel();
+        addTitleAndBackToCreateUserPanel();
 
         JTextField userName = new JTextField();
         userName.setBounds(500, 130, 100, 30);
@@ -630,7 +651,8 @@ public class GUI extends JFrame {
         addConfirmButtonToCreateUserPanel(userName, userPassword, userEmail);
     }
 
-    private void addTitleandBackToCreateUserPanel() {
+    // EFFECTS: add title and back button to create user panel
+    private void addTitleAndBackToCreateUserPanel() {
         JLabel label = new JLabel("Create user");
         label.setForeground(Color.RED);
         label.setFont(new Font("MV Boli", Font.BOLD, 40));
@@ -643,7 +665,9 @@ public class GUI extends JFrame {
         createUserPanel.add(backButton);
     }
 
-    private void addConfirmButtonToCreateUserPanel(JTextField userName, JTextField userPassword, JTextField userEmail) {
+    // EFFECTS: add confirm button to create user panel
+    private void addConfirmButtonToCreateUserPanel(JTextField userName,
+                                                   JTextField userPassword, JTextField userEmail) {
         JButton confirmButton = new JButton("create");
         confirmButton.setBounds(370, 300, 200, 30);
         confirmButton.setFont(new Font("Comic Sans", Font.BOLD, 20));
@@ -667,6 +691,7 @@ public class GUI extends JFrame {
         createUserPanel.add(confirmButton);
     }
 
+    // EFFECTS: update the panels after create a new user
     private void updateAfterCreateNewUser() {
         updateGoodsMenu();
         updateTransactions();
@@ -675,6 +700,7 @@ public class GUI extends JFrame {
         cards.show(panelCont, "3");
     }
 
+    // EFFECTS: add labels to create user panel
     private void addLabelToCreateUserPanel() {
         JLabel l1 = new JLabel("Enter username: ");
         l1.setBounds(300, 130, 200, 30);
