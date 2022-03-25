@@ -1,11 +1,16 @@
 {
-    "password": "123",
-    "name": "user",
+    "password": "pass",
+    "name": "whz",
     "warehouses": [{
-        "totalCostInWarehouse": 0,
-        "transactionRecords": [],
+        "totalCostInWarehouse": 1,
+        "transactionRecords": ["2022-03-25: Purchased 1 apple at cost of 1.0"],
         "name": "newWarehouse",
-        "goodsInWarehouseMenu": []
+        "goodsInWarehouseMenu": [{
+            "quantityInStock": 1,
+            "name": "apple",
+            "averageCost": 1,
+            "totalCostInStock": 1
+        }]
     }],
-    "email": "213"
+    "email": "email"
 }
