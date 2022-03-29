@@ -22,3 +22,7 @@ in daily life as well. Later on, I can make it to different upgraded versions in
 - As a user, I want to view my transaction history in a warehouse
 - As a user, I want to be able to save my inventory information to file
 - As a user, I want to be able to load my inventory information from file 
+
+
+##Phase 4: Task 2
+![img.png](img.png)

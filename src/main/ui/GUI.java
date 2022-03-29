@@ -1,6 +1,8 @@
 package ui;
 
 import exceptions.InvalidNumberException;
+import model.Event;
+import model.EventLog;
 import model.Goods;
 import model.User;
 import model.Warehouse;
@@ -107,6 +109,8 @@ public class GUI extends JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
                 super.windowClosing(e);
+                printLog(EventLog.getInstance());
+
                 int answer = JOptionPane.showConfirmDialog(null, "Do you want to save the current user?",
                         "Saved?", JOptionPane.YES_NO_OPTION);
                 if (answer == 0) {
@@ -752,6 +756,13 @@ public class GUI extends JFrame {
         l3.setBounds(300, 230, 200, 30);
         l3.setFont(new Font("MV Boli", Font.BOLD, 20));
         createUserPanel.add(l3);
+    }
+
+    public void printLog(EventLog el) {
+        for (Event event : el) {
+            System.out.println(event.toString());
+        }
+
     }
 
 }

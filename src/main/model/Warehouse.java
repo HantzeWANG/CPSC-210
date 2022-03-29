@@ -49,6 +49,8 @@ public class Warehouse implements Writable {
         LocalDate date = LocalDate.now();
         String s = date + ": Purchased " + amount + " " + nameOfGoods + " at cost of " + cost;
         transactionRecords.add(s);
+        EventLog.getInstance().logEvent(new Event(
+                "Purchased " + amount + " " + nameOfGoods + " at cost of " + cost));
     }
 
     // REQUIRES: amount > 0, price >= 0
@@ -69,6 +71,9 @@ public class Warehouse implements Writable {
         LocalDate date = LocalDate.now();
         String s = date + ": Sold " + amount + " " + nameOfGoods + " at price of " + price;
         transactionRecords.add(s);
+        //
+        EventLog.getInstance().logEvent(new Event(
+                "Sold " + amount + " " + nameOfGoods + " at price of " + price));
     }
 
     // MODIFIES: this
