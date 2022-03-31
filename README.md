@@ -26,3 +26,8 @@ in daily life as well. Later on, I can make it to different upgraded versions in
 
 ##Phase 4: Task 2
 ![img.png](img.png)
+
+##Phase 4: Task 3
+I will change list to set because there is no duplicate in my design, also I will add some bi-directional 
+relationship to my model classes. I want to also make there could be several User saved in data file and 
+could be selected in GUI.
