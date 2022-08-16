@@ -2,33 +2,42 @@
     "password": "pass",
     "name": "whz",
     "warehouses": [{
-        "totalCostInWarehouse": 301.61386138613864,
+        "totalCostInWarehouse": 501.71287128712873,
         "transactionRecords": [
             "2022-03-25: Purchased 1 apple at cost of 1.0",
             "2022-03-28: Purchased 30 pineapple at cost of 2.0",
             "2022-03-28: Purchased 50 pear at cost of 2.5",
             "2022-03-28: Purchased 100 apple at cost of 1.5",
-            "2022-03-28: Sold 23 apple at price of 10.0"
+            "2022-03-28: Sold 23 apple at price of 10.0",
+            "2022-04-01: Sold 20 apple at price of 1.0",
+            "2022-04-01: Purchased 20 pineapple at cost of 10.0",
+            "2022-04-01: Purchased 30 banana at cost of 1.0"
         ],
         "name": "newWarehouse",
         "goodsInWarehouseMenu": [
             {
-                "quantityInStock": 78,
+                "quantityInStock": 58,
                 "name": "apple",
                 "averageCost": 1.495049504950495,
-                "totalCostInStock": 116.61386138613861
+                "totalCostInStock": 86.7128712871287
             },
             {
-                "quantityInStock": 30,
+                "quantityInStock": 50,
                 "name": "pineapple",
-                "averageCost": 2,
-                "totalCostInStock": 60
+                "averageCost": 5.2,
+                "totalCostInStock": 260
             },
             {
                 "quantityInStock": 50,
                 "name": "pear",
                 "averageCost": 2.5,
                 "totalCostInStock": 125
+            },
+            {
+                "quantityInStock": 30,
+                "name": "banana",
+                "averageCost": 1,
+                "totalCostInStock": 30
             }
         ]
     }],

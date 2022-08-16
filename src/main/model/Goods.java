@@ -4,6 +4,8 @@ import exceptions.InvalidNumberException;
 import org.json.JSONObject;
 import persistence.Writable;
 
+import java.util.Iterator;
+
 // represents a kind of goods with given name, quantity in stock
 // and many relative statistical data (see corresponding comments)
 public class Goods implements Writable {
@@ -110,5 +112,8 @@ public class Goods implements Writable {
         json.put("averageCost", averageCost);
         json.put("totalCostInStock", totalCostInStock);
         return json;
+
+
     }
+
 }
